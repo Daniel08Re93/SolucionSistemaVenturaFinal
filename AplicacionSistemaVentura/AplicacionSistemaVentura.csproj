@@ -482,9 +482,7 @@
     <Compile Include="PAQ04-Reportes\Indicadores.xaml.cs">
       <DependentUpon>Indicadores.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_CostoMantenimiento.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_CostoMantenimiento.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_CostoMantenimiento.designer.cs">
       <DependentUpon>Reporte_CostoMantenimiento.cs</DependentUpon>
     </Compile>
@@ -515,90 +513,62 @@
     <Compile Include="PAQ04-Reportes\ReporteTransferenciaPartes.xaml.cs">
       <DependentUpon>ReporteTransferenciaPartes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_Comparativo.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_Comparativo.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_Comparativo.designer.cs">
       <DependentUpon>Reporte_Comparativo.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_DisponibilidadStockOT.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_DisponibilidadStockOT.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_DisponibilidadStockOT.designer.cs">
       <DependentUpon>Reporte_DisponibilidadStockOT.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_Indicadores.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_Indicadores.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_Indicadores.Designer.cs">
       <DependentUpon>Reporte_Indicadores.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_ListadoHojaInspeccion.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_ListadoHojaInspeccion.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_ListadoHojaInspeccion.designer.cs">
       <DependentUpon>Reporte_ListadoHojaInspeccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_ListadoHojaRequerimiento.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_ListadoHojaRequerimiento.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_ListadoHojaRequerimiento.designer.cs">
       <DependentUpon>Reporte_ListadoHojaRequerimiento.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_MonitoreoLineaOT.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_MonitoreoLineaOT.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_MonitoreoLineaOT.designer.cs">
       <DependentUpon>Reporte_MonitoreoLineaOT.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_TopTaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_TopTaller.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_TopTaller.designer.cs">
       <DependentUpon>Reporte_TopTaller.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_TrabajoMecanico.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_TrabajoMecanico.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_TrabajoMecanico.designer.cs">
       <DependentUpon>Reporte_TrabajoMecanico.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\Reporte_TransferenciaPartes.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\Reporte_TransferenciaPartes.cs" />
     <Compile Include="PAQ04-Reportes\Reporte_TransferenciaPartes.designer.cs">
       <DependentUpon>Reporte_TransferenciaPartes.cs</DependentUpon>
     </Compile>
     <Compile Include="PAQ04-Reportes\SchedulerProgramacionOT.xaml.cs">
       <DependentUpon>SchedulerProgramacionOT.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\SubReporteActividades.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\SubReporteActividades.cs" />
     <Compile Include="PAQ04-Reportes\SubReporteActividades.designer.cs">
       <DependentUpon>SubReporteActividades.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\SubReporteOTProcesadas.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\SubReporteOTProcesadas.cs" />
     <Compile Include="PAQ04-Reportes\SubReporteOTProcesadas.designer.cs">
       <DependentUpon>SubReporteOTProcesadas.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\SubReporteUCCostoMtto.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\SubReporteUCCostoMtto.cs" />
     <Compile Include="PAQ04-Reportes\SubReporteUCCostoMtto.designer.cs">
       <DependentUpon>SubReporteUCCostoMtto.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\SubReporteUCRecorrido.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\SubReporteUCRecorrido.cs" />
     <Compile Include="PAQ04-Reportes\SubReporteUCRecorrido.designer.cs">
       <DependentUpon>SubReporteUCRecorrido.cs</DependentUpon>
     </Compile>
-    <Compile Include="PAQ04-Reportes\XtraSchedulerReport1.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="PAQ04-Reportes\XtraSchedulerReport1.cs" />
     <Compile Include="PAQ04-Reportes\XtraSchedulerReport1.designer.cs">
       <DependentUpon>XtraSchedulerReport1.cs</DependentUpon>
     </Compile>
@@ -707,18 +677,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="bin\Debug_\AplicacionSistemaVentura.exe.config" />
-    <None Include="bin\Debug_\AplicacionSistemaVentura.vshost.exe.Config" />
-    <None Include="bin\Debug_\AplicacionSistemaVentura.vshost.exe.manifest" />
-    <None Include="bin\Debug_\Lang\Mensajes.ini" />
-    <None Include="bin\Debug_\Log\PERFILUC.rpt" />
-    <None Include="bin\Release\AplicacionSistemaVentura.exe.config" />
-    <None Include="bin\x64\Debug\AplicacionSistemaVentura.exe.config" />
-    <None Include="bin\x64\Debug\Lang\Mensajes.ini" />
-    <None Include="bin\x64\Debug\Log\PERFILUC.rpt" />
-    <None Include="bin\x64\Debug\temp\OT00000010\Alcance Requerimientos.pdf" />
-    <None Include="bin\x64\Debug\temp\OT00000011\Detalle.csv" />
-    <None Include="bin\x64\Debug\temp\OT00000011\Perfil.xlsx" />
     <None Include="Image\Semaforo\Semáforos.psd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -741,127 +699,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Debug_\Log\Debug_20141022.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20141023.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150127.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150130.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150311.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150526.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150608.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150609.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20150826.XML" />
-    <Resource Include="bin\Debug_\Log\Debug_20160705.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20141022.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20141023.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150127.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150130.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150515.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150526.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150608.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150609.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20150826.XML" />
-    <Resource Include="bin\Debug_\Log\Error_20160705.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20141022.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20141023.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150127.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150130.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150311.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150526.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150608.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150609.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20150826.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20160705.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210119.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210120.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210121.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210122.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210123.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210125.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210126.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210127.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210128.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210129.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210131.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210209.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210210.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210215.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210216.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210217.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210219.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210221.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210222.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210223.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210224.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210226.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210304.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210305.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210311.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210312.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210427.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210504.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210507.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210604.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210607.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210608.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210609.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20210610.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20211202.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20211203.XML" />
-    <Resource Include="bin\x64\Debug\Log\Debug_20211206.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20141022.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20141023.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150127.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150130.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150515.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150526.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150608.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150609.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20150826.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20160705.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210119.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210120.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210121.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210122.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210123.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210125.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210126.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210127.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210128.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210129.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210131.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210209.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210215.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210216.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210217.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210219.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210220.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210221.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210222.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210223.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210225.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210226.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210303.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210304.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210305.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210311.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210312.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210414.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210415.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210427.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210504.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210607.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210608.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210609.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20210610.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20211202.XML" />
-    <Resource Include="bin\x64\Debug\Log\Error_20211203.XML" />
-    <Resource Include="bin\x64\Debug\temp\OT00000004\AQUI.txt" />
-    <Resource Include="bin\x64\Debug\temp\OT00000007\SLD.txt" />
-    <Resource Include="bin\x64\Debug\temp\OT00000009\negrita.PNG" />
-    <Resource Include="bin\x64\Debug\temp\OT00000009\REDRILSA_transac.txt" />
-    <Resource Include="bin\x64\Debug\temp\OT00000009\SLD.txt" />
-    <Resource Include="bin\x64\Debug\temp\OT00000010\REDRILSA_transac.txt" />
-    <Resource Include="bin\x64\Debug\temp\OT00000011\negrita.PNG" />
     <Resource Include="Image\folder-icon.png" />
     <Resource Include="Image\form-icon.png" />
   </ItemGroup>
@@ -1022,98 +859,7 @@
     <Resource Include="Image\Iconos\User_Manager.png" />
     <Resource Include="Image\Iconos\user_Other.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug_\AplicacionSistemaVentura.exe" />
-    <Content Include="bin\Debug_\AplicacionSistemaVentura.pdb" />
-    <Content Include="bin\Debug_\AplicacionSistemaVentura.vshost.exe" />
-    <Content Include="bin\Debug_\Business.dll" />
-    <Content Include="bin\Debug_\Business.pdb" />
-    <Content Include="bin\Debug_\Data.dll" />
-    <Content Include="bin\Debug_\Data.pdb" />
-    <Content Include="bin\Debug_\Entities.dll" />
-    <Content Include="bin\Debug_\Entities.pdb" />
-    <Content Include="bin\Debug_\InterfazMTTO.dll" />
-    <Content Include="bin\Debug_\iSBO_BE.dll" />
-    <Content Include="bin\Debug_\iSBO_DA.dll" />
-    <Content Include="bin\Debug_\iSBO_Util.dll" />
-    <Content Include="bin\Debug_\Utilitarios.dll" />
-    <Content Include="bin\Debug_\Utilitarios.pdb" />
-    <Content Include="bin\Release\AplicacionSistemaVentura.exe" />
-    <Content Include="bin\Release\AplicacionSistemaVentura.pdb" />
-    <Content Include="bin\Release\Business.dll" />
-    <Content Include="bin\Release\Business.pdb" />
-    <Content Include="bin\Release\Data.dll" />
-    <Content Include="bin\Release\Data.pdb" />
-    <Content Include="bin\Release\Entities.dll" />
-    <Content Include="bin\Release\Entities.pdb" />
-    <Content Include="bin\Release\InterfazMTTO.dll" />
-    <Content Include="bin\Release\iSBO_BE.dll" />
-    <Content Include="bin\Release\iSBO_DA.dll" />
-    <Content Include="bin\Release\iSBO_Util.dll" />
-    <Content Include="bin\Release\Utilitarios.dll" />
-    <Content Include="bin\Release\Utilitarios.pdb" />
-    <Content Include="bin\x64\Debug\AplicacionSistemaVentura.exe" />
-    <Content Include="bin\x64\Debug\AplicacionSistemaVentura.pdb" />
-    <Content Include="bin\x64\Debug\Business.dll" />
-    <Content Include="bin\x64\Debug\Business.pdb" />
-    <Content Include="bin\x64\Debug\CrystalDecisions.CrystalReports.Engine.dll" />
-    <Content Include="bin\x64\Debug\CrystalDecisions.Shared.dll" />
-    <Content Include="bin\x64\Debug\Data.dll" />
-    <Content Include="bin\x64\Debug\Data.pdb" />
-    <Content Include="bin\x64\Debug\DevExpress.Charts.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Data.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.DataAccess.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Mvvm.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.PivotGrid.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Printing.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Sparkline.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Utils.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Core.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Docking.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Gauges.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Grid.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Grid.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Layout.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.LayoutControl.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.NavBar.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Printing.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Ribbon.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Scheduler.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpf.Themes.DXStyle.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.Xpo.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraCharts.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraPivotGrid.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraPrinting.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraReports.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraScheduler.v15.1.Core.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraScheduler.v15.1.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraScheduler.v15.1.Reporting.dll" />
-    <Content Include="bin\x64\Debug\DevExpress.XtraScheduler.v15.1.Reporting.Extensions.dll" />
-    <Content Include="bin\x64\Debug\Entities.dll" />
-    <Content Include="bin\x64\Debug\Entities.pdb" />
-    <Content Include="bin\x64\Debug\InterfazMTTO.dll" />
-    <Content Include="bin\x64\Debug\iSBO_BE.dll" />
-    <Content Include="bin\x64\Debug\iSBO_DA.dll" />
-    <Content Include="bin\x64\Debug\iSBO_Util.dll" />
-    <Resource Include="bin\x64\Debug\Log\Error_20211206.XML" />
-    <Content Include="bin\x64\Debug\Mailer.NET.dll" />
-    <Content Include="bin\x64\Debug\Microsoft.Office.Interop.Excel.dll" />
-    <Content Include="bin\x64\Debug\ShockwaveFlashObjects.dll" />
-    <Content Include="bin\x64\Debug\stdole.dll" />
-    <Content Include="bin\x64\Debug\temp\OT00000007\TABLA_HANA.sql" />
-    <Content Include="bin\x64\Debug\temp\OT00000009\PROBAR.sql" />
-    <Content Include="bin\x64\Debug\temp\OT00000010\STORE_SQL.sql" />
-    <Content Include="bin\x64\Debug\Utilitarios.dll" />
-    <Content Include="bin\x64\Debug\Utilitarios.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-    <Folder Include="bin\x64\Debug\de\" />
-    <Folder Include="bin\x64\Debug\es\" />
-    <Folder Include="bin\x64\Debug\ja\" />
-    <Folder Include="bin\x64\Debug\ru\" />
-    <Folder Include="bin\x64\Release\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
