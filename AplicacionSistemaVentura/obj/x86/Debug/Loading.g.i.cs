@@ -9,10 +9,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using DevExpress.Core;
+using DevExpress.Xpf.Core;
+using DevExpress.Xpf.Core.ConditionalFormatting;
+using DevExpress.Xpf.Core.DataSources;
+using DevExpress.Xpf.Core.Serialization;
+using DevExpress.Xpf.Core.ServerMode;
 using RootLibrary.WPF.Localization;
-using SAPBusinessObjects.WPF.Viewer;
 using System;
-using System.Collections;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Automation;

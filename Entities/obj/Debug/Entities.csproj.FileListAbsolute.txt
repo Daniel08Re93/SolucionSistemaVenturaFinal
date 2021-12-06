@@ -68,3 +68,8 @@ C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Ent
 C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Entities\bin\Debug\Entities.pdb
 C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Entities\obj\Debug\Entities.dll
 C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Entities\obj\Debug\Entities.pdb
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\bin\Debug\Entities.dll
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\bin\Debug\Entities.pdb
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\Debug\Entities.dll
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\Debug\Entities.pdb

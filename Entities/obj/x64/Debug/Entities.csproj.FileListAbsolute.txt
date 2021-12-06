@@ -27,7 +27,6 @@ C:\Users\vsperu\Downloads\Hana\Entities\obj\x64\Debug\Entities.dll
 C:\Users\vsperu\Downloads\Hana\Entities\obj\x64\Debug\Entities.pdb
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\bin\x64\Debug\Entities.dll
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\bin\x64\Debug\Entities.pdb
-C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\x64\Debug\Entities.csproj.AssemblyReference.cache
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\x64\Debug\Entities.csproj.CoreCompileInputs.cache
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\x64\Debug\Entities.dll
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Entities\obj\x64\Debug\Entities.pdb

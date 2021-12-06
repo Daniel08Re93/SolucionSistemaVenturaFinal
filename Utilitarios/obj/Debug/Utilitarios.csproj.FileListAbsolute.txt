@@ -151,3 +151,14 @@ C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Uti
 C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Utilitarios\obj\Debug\Utilitarios.csprojResolveAssemblyReference.cache
 C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Utilitarios\obj\Debug\Utilitarios.dll
 C:\SVN\Producto\ZZ\ZZX3MNT\VSMOne\branches\1.00.2.0003\Fuentes\Proyecto\HANA\Utilitarios\obj\Debug\Utilitarios.pdb
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\bin\Debug\Utilitarios.dll
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\bin\Debug\Utilitarios.pdb
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\bin\Debug\Data.dll
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\bin\Debug\Entities.dll
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\bin\Debug\Data.pdb
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\bin\Debug\Entities.pdb
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\obj\Debug\Utilitarios.csproj.AssemblyReference.cache
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\obj\Debug\Utilitarios.csproj.CoreCompileInputs.cache
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\obj\Debug\Utilitarios.csproj.CopyComplete
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\obj\Debug\Utilitarios.dll
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\Utilitarios\obj\Debug\Utilitarios.pdb
