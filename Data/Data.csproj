@@ -110,23 +110,7 @@
       <Name>Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="bin\Debug\Data.dll" />
-    <Content Include="bin\Debug\Data.pdb" />
-    <Content Include="bin\Debug\Entities.dll" />
-    <Content Include="bin\Debug\Entities.pdb" />
-    <Content Include="bin\Release\Data.dll" />
-    <Content Include="bin\Release\Data.pdb" />
-    <Content Include="bin\Release\Entities.dll" />
-    <Content Include="bin\Release\Entities.pdb" />
-    <Content Include="bin\x64\Debug\Data.dll" />
-    <Content Include="bin\x64\Debug\Data.pdb" />
-    <Content Include="bin\x64\Debug\Entities.dll" />
-    <Content Include="bin\x64\Debug\Entities.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\x64\Release\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
