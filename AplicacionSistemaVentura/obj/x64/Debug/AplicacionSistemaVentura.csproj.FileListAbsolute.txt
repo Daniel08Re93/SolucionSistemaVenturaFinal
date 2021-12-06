@@ -820,6 +820,6 @@ C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FIN
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.csproj.GenerateResource.cache
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.exe.licenses
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.csproj.CoreCompileInputs.cache
+C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.csproj.CopyComplete
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.exe
 C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.pdb
-C:\Users\vsperu\Desktop\VSMONE\FUENTES PRINCIPALES\AplicaciónSistemaVentura_FINAL\Hana\AplicacionSistemaVentura\obj\x64\Debug\AplicacionSistemaVentura.csproj.CopyComplete
