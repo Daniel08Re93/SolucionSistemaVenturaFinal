@@ -1627,7 +1627,6 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                                 dtgCiclo.Columns["PorcNaranja"].AllowEditing = DevExpress.Utils.DefaultBoolean.True;
                                 #region REQUERIMIENTO_01
                                 dtgCiclo.Columns["FlagCicloPrincipal"].AllowEditing = DevExpress.Utils.DefaultBoolean.True;
-
                                 #endregion
                             }
                         }
@@ -2367,6 +2366,7 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
             try
             {
                 ValidarCamposNullEnGrillas();
+                //ValidarCheckCiclo();
             }
             catch (Exception ex)
             {
@@ -2415,6 +2415,30 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                 ObjError.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
             }
         }
+
+        void ValidarCheckCiclo()
+        {
+            try
+            {
+                if (dtgCiclo.ItemsSource != null)
+                {
+                    DataTable tblciclo = tblPerfilCompCiclo;
+                    foreach (DataRow drPfCiclo in tblPerfilCompCiclo.Select("FlagCicloPrincipal IS NOT NULL"))
+                    {
+                        if (drPfCiclo["FlagCicloPrincipal"].Equals(DbType.Boolean))
+                        {
+                            drPfCiclo["FrecuenciaCambio"] = 0.00;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                ObjError.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
         private void txtCodiSAP_EditValueChanged(object sender, EditValueChangedEventArgs e)
         {
             try
