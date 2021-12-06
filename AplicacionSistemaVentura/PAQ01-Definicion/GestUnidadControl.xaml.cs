@@ -1627,6 +1627,7 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                                 dtgCiclo.Columns["PorcNaranja"].AllowEditing = DevExpress.Utils.DefaultBoolean.True;
                                 #region REQUERIMIENTO_01
                                 dtgCiclo.Columns["FlagCicloPrincipal"].AllowEditing = DevExpress.Utils.DefaultBoolean.True;
+
                                 #endregion
                             }
                         }
