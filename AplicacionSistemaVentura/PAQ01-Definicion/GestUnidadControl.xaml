@@ -207,7 +207,7 @@
                                                 <dxe:TextEditSettings Mask="P" MaskType="Numeric" MaskUseAsDisplayFormat="True"/>
                                             </dxg:GridColumn.EditSettings>
                                         </dxg:GridColumn>
-                                        <dxg:GridColumn AllowEditing="True" FieldName="FlagCicloPrincipal" Header="Ciclo Principal" VisibleIndex="5" SortIndex="0" SortOrder="Ascending" Width="95" HorizontalHeaderContentAlignment="Center">
+                                        <dxg:GridColumn AllowEditing="True" FieldName="FlagCicloPrincipal" Header="Ciclo Principal" VisibleIndex="5" SortIndex="0" SortOrder="Descending" Width="95" HorizontalHeaderContentAlignment="Center">
                                             <dxg:GridColumn.EditSettings>
                                                 <dxe:CheckEditSettings />
                                             </dxg:GridColumn.EditSettings>

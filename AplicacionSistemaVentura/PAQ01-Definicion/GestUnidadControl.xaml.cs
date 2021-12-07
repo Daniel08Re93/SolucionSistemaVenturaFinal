@@ -2084,6 +2084,7 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
         private bool ValidaCampoObligado()
         {
             bool bolRpta = false;
+            int contador = 0;
             try
             {
                 if (cboPerfil.SelectedIndex == -1)
@@ -2104,6 +2105,29 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                     GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaUnidadControl, "OBLI_UC"), 2);
                     cboUnidCont.Focus();
                 }
+                #region REQUERIMIENTO_01
+                else if (dtgCiclo.ItemsSource != null)
+                {
+                    DataTable tblciclo = tblPerfilCompCiclo;
+                    foreach (DataRow drPfCiclo in tblPerfilCompCiclo.Select("FlagCicloPrincipal IS NOT NULL"))
+                    {
+                        if (drPfCiclo["FlagCicloPrincipal"].Equals(true))
+                        {
+                            contador = contador + 1;
+                        }
+                    }
+                    if(contador > 1)
+                    {
+                        bolRpta = true;
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaUnidadControl, "MORE_CICLO"), 2);
+                    }
+                    else if(contador == 0)
+                    {
+                        bolRpta = true;
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaUnidadControl, "OBLI_CICLO"), 2);
+                    }
+                }
+                #endregion
                 return bolRpta;
             }
             catch (Exception ex)
@@ -2366,7 +2390,6 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
             try
             {
                 ValidarCamposNullEnGrillas();
-                //ValidarCheckCiclo();
             }
             catch (Exception ex)
             {
@@ -2420,14 +2443,19 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
         {
             try
             {
+                int contador = 0;
                 if (dtgCiclo.ItemsSource != null)
                 {
                     DataTable tblciclo = tblPerfilCompCiclo;
                     foreach (DataRow drPfCiclo in tblPerfilCompCiclo.Select("FlagCicloPrincipal IS NOT NULL"))
                     {
-                        if (drPfCiclo["FlagCicloPrincipal"].Equals(DbType.Boolean))
+                        if (drPfCiclo["FlagCicloPrincipal"].Equals(true))
                         {
-                            drPfCiclo["FrecuenciaCambio"] = 0.00;
+                            contador = contador + 1;
+                        }
+                        else
+                        {
+
                         }
                     }
                 }
