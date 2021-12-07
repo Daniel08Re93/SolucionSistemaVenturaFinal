@@ -952,6 +952,12 @@ namespace AplicacionSistemaVentura.PAQ02_Planificacion
                     CboCiclo.DisplayMember = "Ciclo";
                     CboCiclo.ValueMember = "IdCiclo";
 
+                    #region "Planes de Mantenimiento=>,"Cargar Ciclo por Defecto de perfil seleccionado"
+                    DataTable tblPerfil = new DataTable();
+                    tblPerfil = objPerfil.Perfil_GetItem(E_Perfil);
+                    CboCiclo.EditValue = Convert.ToInt32(tblPerfil.Rows[0]["IdCicloDefecto"]);
+                    #endregion
+
                     LlenarTrvComponentes(Convert.ToInt32(CboPerfil.EditValue));
 
                     DataTable tblPerfilActividadDatos = objPerActi.PerfilComp_Actividad_List(E_Perfil);

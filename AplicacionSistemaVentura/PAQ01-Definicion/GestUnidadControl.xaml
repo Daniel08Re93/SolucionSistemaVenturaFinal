@@ -178,7 +178,7 @@
                                         </dxe:ButtonEdit>
                                     </Grid>
                                 </GroupBox>
-                                <dxg:GridControl AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" Height="100" HorizontalAlignment="Left" Margin="278,264,0,0" Name="dtgCiclo" VerticalAlignment="Top" Width="644" PreviewKeyDown="dtgCiclo_PreviewKeyDown" SelectedItemChanged="dtgCiclo_SelectedItemChanged" LostFocus="dtgCiclo_LostFocus">
+                                <dxg:GridControl AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" Height="100" HorizontalAlignment="Left" Margin="278,264,0,0" Name="dtgCiclo" VerticalAlignment="Top" Width="644" PreviewKeyDown="dtgCiclo_PreviewKeyDown" SelectedItemChanged="dtgCiclo_SelectedItemChanged" LostFocus="dtgCiclo_LostFocus" IsMouseCaptureWithinChanged="dtgCiclo_IsMouseCaptureWithinChanged">
                                     <dxg:GridControl.Columns>
                                         <dxg:GridColumn AllowEditing="False" FieldName="IdPerfilCompCiclo" VisibleIndex="0" Visible="False"/>
                                         <dxg:GridColumn AllowEditing="False" FieldName="Ciclo" VisibleIndex="0" Width="90"/>

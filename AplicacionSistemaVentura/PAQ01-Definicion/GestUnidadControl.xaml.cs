@@ -2398,6 +2398,32 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
             }
         }
 
+        private void dtgCiclo_IsMouseCaptureWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (dtgCiclo.ItemsSource != null)
+            {
+                if (dtgCiclo.CurrentColumn.FieldName == "FlagCicloPrincipal")
+                {
+                    if ((bool)e.NewValue == true)
+                    {
+                        int rowHandle, idPerfil = 0;
+                        int id = Convert.ToInt32(dtgCiclo.GetFocusedRowCellValue("IdPerfilCompCiclo"));
+
+                        for (int i = 0; i < dtgCiclo.VisibleRowCount; i++)
+                        {
+                            rowHandle = dtgCiclo.GetRowHandleByVisibleIndex(i);
+                            idPerfil = Convert.ToInt32(dtgCiclo.GetCellValue(rowHandle, "IdPerfilCompCiclo"));
+                            if (id != idPerfil)
+                            {
+                                dtgCiclo.SetCellValue(rowHandle, "FlagCicloPrincipal", false);
+                                dtgCiclo.RefreshRow(rowHandle);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         void ValidarCamposNullEnGrillas()
         {
             try
