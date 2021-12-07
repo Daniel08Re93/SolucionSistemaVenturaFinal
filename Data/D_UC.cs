@@ -37,7 +37,10 @@ namespace Data
                 cmd.Parameters.Add("@IdTipoUnidad", SqlDbType.VarChar, 30).Value = E_UC.IdTipoUnidad;
                 cmd.Parameters.Add("@ContadorAcum", SqlDbType.Decimal).Value = E_UC.ContadorAcum;
                 cmd.Parameters.Add("@IdPerfil", SqlDbType.Int).Value = E_UC.IdPerfil;
-                cmd.Parameters.Add("@IdPerfilNeumatico", SqlDbType.Int).Value = 0;
+                #region REQUERIMIENTO_01
+                //cmd.Parameters.Add("@IdPerfilNeumatico", SqlDbType.Int).Value = 0;
+                cmd.Parameters.Add("@IdPerfilNeumatico", SqlDbType.Int).Value = E_UC.IdPerfilNeumatico;
+                #endregion
                 cmd.Parameters.Add("@Observacion", SqlDbType.VarChar, 200).Value = E_UC.Observacion;
                 cmd.Parameters.Add("@IdEstadoUC", SqlDbType.Int).Value = E_UC.IdEstadoUC;
                 cmd.Parameters.Add("@FlagActivo", SqlDbType.Bit).Value = 1;

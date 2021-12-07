@@ -2116,12 +2116,7 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                             contador = contador + 1;
                         }
                     }
-                    if(contador > 1)
-                    {
-                        bolRpta = true;
-                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaUnidadControl, "MORE_CICLO"), 2);
-                    }
-                    else if(contador == 0)
+                    if (contador == 0)
                     {
                         bolRpta = true;
                         GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaUnidadControl, "OBLI_CICLO"), 2);
