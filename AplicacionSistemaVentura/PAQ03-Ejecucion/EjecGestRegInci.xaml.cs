@@ -189,6 +189,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 if ((gbolNuevo == true) && (gbolEdicion == false))
                 {
                     if (ValidaCampoObligado() == true) return;
+                    if (ValidaEstadoUnidadControl() == true) return;
 
                     int IdTipoOperacion = Convert.ToInt32(cboTipoOperacion.EditValue);
                     string NroDocOperacion = "";
@@ -374,6 +375,32 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             cboUC.SelectedIndexChanged += new RoutedEventHandler(cboUC_SelectedIndexChanged);
             EstadoForm(false, false, true);
             BloquearControles(true);
+        }
+
+        private bool ValidaEstadoUnidadControl()
+        {
+            bool rpta = false;
+            try
+            {
+
+                E_UC objUnidadControl = new E_UC();
+                objUnidadControl.CodUc = cboUC.EditValue.ToString();
+                objUnidadControl = objB_UC.B_UC_GetItemByCodUC(objUnidadControl);
+                if (objUnidadControl != null)
+                {
+                    if (objUnidadControl.IdEstadoUC == (int)Enumeracion.EstadoUC.Registrado)
+                    {
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "OBLI_UC_ACTIVO"), 2);
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+            return rpta;
         }
 
         private bool ValidaCampoObligado()
