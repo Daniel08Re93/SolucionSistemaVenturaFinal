@@ -208,5 +208,36 @@ namespace Data
             }
             return Error;
         }
+
+        public static  E_Perfil GetPerfilByCodUC(E_UC E_UC)
+        {
+            E_Perfil objPerfil = null;
+            using (SqlConnection cx = Conexion.ObtenerConexion())
+            {
+                cx.Open();
+                using (SqlCommand cmd = new SqlCommand("Perfil_GetPerfilByCodUc", cx))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@CodUC", SqlDbType.VarChar).Value = E_UC.CodUc;
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            objPerfil = new E_Perfil();
+                            objPerfil.Idperfil = dr.GetInt32(0);
+                            objPerfil.Codperfil = dr.GetString(1);
+                            objPerfil.IdCicloDefecto = dr.GetInt32 (2);
+                            objPerfil.Ciclo = dr.GetString(3);
+                            objPerfil.Idestadop = dr.GetInt32(4);
+                            objPerfil.Flagactivo = dr.GetBoolean(5);
+                        }
+                        dr.Close();
+                    }
+                }
+            }
+            return objPerfil;
+        }
+
     }
 }

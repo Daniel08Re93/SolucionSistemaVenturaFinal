@@ -21,7 +21,7 @@
                             </dxg:GridColumn>
                             <dxg:GridColumn FieldName="TipoOperacion" VisibleIndex="1" Header="Tipo&#10;Operación" Width="90"/>
                             <dxg:GridColumn FieldName="PlacaSerie" VisibleIndex="2" Width="70" />
-                            <dxg:GridColumn FieldName="Evento" VisibleIndex="3" Width="100"/> 
+                            <dxg:GridColumn FieldName="Evento" VisibleIndex="3" Width="100"/>
                             <dxg:GridColumn FieldName="FechaIni" VisibleIndex="4" Header="Fecha Inicial"/>
                             <dxg:GridColumn FieldName="ContadorIni" VisibleIndex="5" Header="Contador&#10;Inicial" Width="60"/>
                             <dxg:GridColumn FieldName="FechaFin" VisibleIndex="6" Header="Fecha&#10;Final"/>
@@ -38,7 +38,7 @@
                                 ShowGroupPanel="False" ShowSearchPanelMode="Always"                                
                                 SearchPanelHorizontalAlignment="Left" ShowIndicator="True"
                                 AlternateRowBackground="AliceBlue" AllowEditing="False"
-                                AutoWidth="True" />                            
+                                AutoWidth="True" />
                         </dxg:GridControl.View>
                     </dxg:GridControl>
                     <Button Style="{DynamicResource buttonStyle}" Content="Registrar" Name="btnNuevo" Click="btnNuevo_Click" HorizontalAlignment="Left" Margin="10,0,0,10"  VerticalAlignment="Bottom" />
@@ -93,12 +93,12 @@
                     </dxg:LookUpEdit>
                     <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="110,100,0,0" Name="CboSolicitante" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
                     <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="450,100,0,0" Name="CboResponsable" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
-                    <dxe:TextEdit EditValue="02.09.2009 3:14" HorizontalAlignment="Left" Margin="110,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaIni" VerticalAlignment="Top" Width="110" />                    
+                    <dxe:TextEdit EditValue="02.09.2009 3:14" HorizontalAlignment="Left" Margin="110,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaIni" VerticalAlignment="Top" Width="110" />
                     <dxe:TextEdit EditValue="02.09.2009 3:14" HorizontalAlignment="Left" Margin="330,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaFin" VerticalAlignment="Top" Width="110" />
                     <dxe:TextEdit HorizontalAlignment="Left" Margin="110,202,0,0" Name="txtContadorIni" Style="{DynamicResource FormatoDecimal}" EditValue="0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right"/>
                     <dxe:TextEdit HorizontalAlignment="Left" Margin="330,202,0,0" Name="txtContadorFin" Style="{DynamicResource FormatoDecimal}" EditValue="0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right"/>
                     <dxe:TextEdit Height="67" HorizontalAlignment="Left" Margin="112,240,0,0" Name="txtObservacion" Style="{DynamicResource FormatoAlfanumericoEspecialMax200}" VerticalAlignment="Top" Width="329" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" />
-                    
+
                     <Button Style="{DynamicResource buttonStyle}" Width="100" IsDefault="True"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,30" Content="Grabar" Name="btnGrabar" Click="btnGrabar_Click"/>
                     <Button Style="{DynamicResource buttonStyle}" Width="100" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="120,0,0,30" Content="Cancelar" Name="BtnCancelar" Click="BtnCancelar_Click"/>
 
@@ -135,6 +135,8 @@
                             </StatusBarItem>
                         </StatusBar>
                     </DockPanel>
+                    <Label Content="Ciclo:" Height="28" HorizontalAlignment="Left" Margin="645,20,0,0" x:Name="lblCiclo" VerticalAlignment="Top" />
+                    <TextBox x:Name="txtCiclo" HorizontalAlignment="Left" Margin="677,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
                 </Grid>
             </TabItem>
         </TabControl>

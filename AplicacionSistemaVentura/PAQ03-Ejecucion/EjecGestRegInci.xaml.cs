@@ -339,6 +339,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             txtContadorIni.Text = string.Empty;
             txtContadorFin.Text = string.Empty;
             txtObservacion.Text = string.Empty;
+            txtCiclo.Text = string.Empty;
             cboNroOperacion.Visibility = Visibility.Collapsed;
             BloquearControles(false);
             cboUC.SelectedIndexChanged += new RoutedEventHandler(cboUC_SelectedIndexChanged);
@@ -375,32 +376,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             cboUC.SelectedIndexChanged += new RoutedEventHandler(cboUC_SelectedIndexChanged);
             EstadoForm(false, false, true);
             BloquearControles(true);
-        }
-
-        private bool ValidaEstadoUnidadControl()
-        {
-            bool rpta = false;
-            try
-            {
-
-                E_UC objUnidadControl = new E_UC();
-                objUnidadControl.CodUc = cboUC.EditValue.ToString();
-                objUnidadControl = objB_UC.B_UC_GetItemByCodUC(objUnidadControl);
-                if (objUnidadControl != null)
-                {
-                    if (objUnidadControl.IdEstadoUC == (int)Enumeracion.EstadoUC.Registrado)
-                    {
-                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "OBLI_UC_ACTIVO"), 2);
-                        return true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                GlobalClass.ip.Mensaje(ex.Message, 3);
-                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
-            }
-            return rpta;
         }
 
         private bool ValidaCampoObligado()
@@ -487,9 +462,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             int IdColumna = Convert.ToInt32(cboTipoOperacion.EditValue);
             cboNroOperacion.Visibility = (IdColumna == 2) ? Visibility.Visible : Visibility.Collapsed;
-
-            if (cboTipoOperacion.EditValue == null) return;
-            TraerUltimoContador(objE_ContadorDet);
         }
 
         private void cboUC_SelectedIndexChanged(object sender, RoutedEventArgs e)
@@ -501,14 +473,16 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             DataView dtv = objB_ContadorDet.ContadorDet_List(objE_ContadorDet).DefaultView;
             cboNroOperacion.ItemsSource = dtv;
 
-            TraerUltimoContador(objE_ContadorDet);
+            TraerCiclodeUnidadControl();
+            TraerUltimoContador();
+         
         }
 
-        public void TraerUltimoContador(E_ContadorDet eContador)
+        public void TraerUltimoContador()
         {
             try
             {
-                //Traer ultimo contador
+                //Traer ciclo
 
                 string DescError = string.Empty;
                 objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
@@ -532,6 +506,58 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 GlobalClass.ip.Mensaje(ex.Message, 3);
                 Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
             }
+        }
+
+        public void TraerCiclodeUnidadControl()
+        {
+            try
+            {
+                //Traer ciclo de la unidad
+
+                string DescError = string.Empty;
+
+                B_Perfil bPerfil = new B_Perfil();
+                E_UC eUnidadControl = new E_UC();
+                E_Perfil ePerfil = new E_Perfil();
+
+                eUnidadControl.CodUc = cboUC.EditValue.ToString();
+                ePerfil = bPerfil.GetPerfilByCodUC(eUnidadControl);
+                if (ePerfil != null)
+                {
+                    txtCiclo.Text = ePerfil.Ciclo;
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        private bool ValidaEstadoUnidadControl()
+        {
+            bool rpta = false;
+            try
+            {
+
+                E_UC objUnidadControl = new E_UC();
+                objUnidadControl.CodUc = cboUC.EditValue.ToString();
+                objUnidadControl = objB_UC.B_UC_GetItemByCodUC(objUnidadControl);
+                if (objUnidadControl != null)
+                {
+                    if (objUnidadControl.IdEstadoUC == (int)Enumeracion.EstadoUC.Registrado)
+                    {
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "OBLI_UC_ACTIVO"), 2);
+                        return true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+            return rpta;
         }
     }
 }
