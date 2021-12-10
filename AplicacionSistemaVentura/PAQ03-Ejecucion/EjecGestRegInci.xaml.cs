@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Data;
 using Entities;
 using Business;
-using Utilitarios;
 
 namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 {
@@ -61,7 +51,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
         private void ListarIncidencias()
         {
-            cboNroOperacion.Visibility = Visibility.Collapsed; 
+            cboNroOperacion.Visibility = Visibility.Collapsed;
             objE_ContadorDet.FechaIni = Convert.ToDateTime(mskFechaIni.EditValue);
             objE_ContadorDet.FechaFin = Convert.ToDateTime(mskFechaFin.EditValue);
             dtgContadorDet.ItemsSource = objB_ContadorDet.ContadorDet_ListByDate(objE_ContadorDet);
@@ -90,7 +80,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 CboSolicitante.DisplayMember = "NombrePersona";
                 CboSolicitante.ValueMember = "CodigoPersona";
                 CboSolicitante.SelectedIndex = -1;
-                
+
                 cboUC.SelectedIndexChanged -= new RoutedEventHandler(cboUC_SelectedIndexChanged);
                 objE_UC.IdPerfil = 0;
                 objE_UC.IdUc = 0;
@@ -207,7 +197,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     {
                         objE_ContadorDet.NroDocOperacion = cboNroOperacion.Text;
                         IdDocCorregir = Convert.ToInt32(cboNroOperacion.EditValue);
-                        NroDocOperacion = cboNroOperacion.Text;                        
+                        NroDocOperacion = cboNroOperacion.Text;
                     }
                     //DataTable tbl = (DataTable)dtgContadorDet.ItemsSource;
                     //for (int i = 0; i < tbl.Rows.Count; i++)
@@ -220,47 +210,49 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     //    string fechaf = tbl.Rows[i]["FechaFin"].ToString();
                     //    if (uct != uc)
                     //    {
-                        //    objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
-                        //    objE_ContadorDet.IdOrigenRegistro = Convert.ToInt32(cboOrigenRegistro.EditValue);
-                        //    objE_ContadorDet.IdEvento = Convert.ToInt32(cboEvento.EditValue);
-                        //    objE_ContadorDet.IdTipoOperacion = IdTipoOperacion;
-                        //    objE_ContadorDet.NroDocOperacion = NroDocOperacion;
-                        //    objE_ContadorDet.IdDocCorregir = IdDocCorregir;
-                        //    objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.EditValue);
-                        //    objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.EditValue);
-                        //    objE_ContadorDet.ContadorIni = Convert.ToDouble(txtContadorIni.EditValue);
-                        //    objE_ContadorDet.ContadorFin = Convert.ToDouble(txtContadorFin.EditValue);
-                        //    objE_ContadorDet.CodSolicitante = "44";// CboSolicitante.EditValue.ToString();
-                        //    objE_ContadorDet.CodResponsable = "105";// CboResponsable.EditValue.ToString();
-                        //    objE_ContadorDet.Observacion = txtObservacion.Text;
-                        //    objE_ContadorDet.IdUsuario = Utilitarios.Utilitarios.gintIdUsuario;
-                        //}
+                    //    objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
+                    //    objE_ContadorDet.IdOrigenRegistro = Convert.ToInt32(cboOrigenRegistro.EditValue);
+                    //    objE_ContadorDet.IdEvento = Convert.ToInt32(cboEvento.EditValue);
+                    //    objE_ContadorDet.IdTipoOperacion = IdTipoOperacion;
+                    //    objE_ContadorDet.NroDocOperacion = NroDocOperacion;
+                    //    objE_ContadorDet.IdDocCorregir = IdDocCorregir;
+                    //    objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.EditValue);
+                    //    objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.EditValue);
+                    //    objE_ContadorDet.ContadorIni = Convert.ToDouble(txtContadorIni.EditValue);
+                    //    objE_ContadorDet.ContadorFin = Convert.ToDouble(txtContadorFin.EditValue);
+                    //    objE_ContadorDet.CodSolicitante = "44";// CboSolicitante.EditValue.ToString();
+                    //    objE_ContadorDet.CodResponsable = "105";// CboResponsable.EditValue.ToString();
+                    //    objE_ContadorDet.Observacion = txtObservacion.Text;
+                    //    objE_ContadorDet.IdUsuario = Utilitarios.Utilitarios.gintIdUsuario;
+                    //}
 
-                        //if (uct == uc && fechahorai != fechai && fechahoraf != fechaf)
-                        //{
-                            objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
-                            objE_ContadorDet.IdOrigenRegistro = Convert.ToInt32(cboOrigenRegistro.EditValue);
-                            objE_ContadorDet.IdEvento = Convert.ToInt32(cboEvento.EditValue);
-                            objE_ContadorDet.IdTipoOperacion = IdTipoOperacion;
-                            objE_ContadorDet.NroDocOperacion = NroDocOperacion;
-                            objE_ContadorDet.IdDocCorregir = IdDocCorregir;
-                            objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.EditValue);
-                            objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.EditValue);
-                            objE_ContadorDet.ContadorIni = Convert.ToDouble(txtContadorIni.EditValue);
-                            objE_ContadorDet.ContadorFin = Convert.ToDouble(txtContadorFin.EditValue);
-                            objE_ContadorDet.CodSolicitante = "44";// CboSolicitante.EditValue.ToString();
-                            objE_ContadorDet.CodResponsable = "105";// CboResponsable.EditValue.ToString();
-                            objE_ContadorDet.Observacion = txtObservacion.Text;
-                            objE_ContadorDet.IdUsuario = Utilitarios.Utilitarios.gintIdUsuario;
+                    //if (uct == uc && fechahorai != fechai && fechahoraf != fechaf)
+                    //{
+                    objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
+                    objE_ContadorDet.IdOrigenRegistro = Convert.ToInt32(cboOrigenRegistro.EditValue);
+                    objE_ContadorDet.IdEvento = Convert.ToInt32(cboEvento.EditValue);
+                    objE_ContadorDet.IdTipoOperacion = IdTipoOperacion;
+                    objE_ContadorDet.NroDocOperacion = NroDocOperacion;
+                    objE_ContadorDet.IdDocCorregir = IdDocCorregir;
+                    objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.EditValue);
+                    objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.EditValue);
+                    objE_ContadorDet.ContadorIni = Convert.ToDouble(txtContadorIni.EditValue);
+                    objE_ContadorDet.ContadorFin = Convert.ToDouble(txtContadorFin.EditValue);
+                    //objE_ContadorDet.CodSolicitante = "44";
+                    //objE_ContadorDet.CodResponsable = "105";
+                    objE_ContadorDet.CodSolicitante = CboSolicitante.EditValue.ToString();
+                    objE_ContadorDet.CodResponsable = CboResponsable.EditValue.ToString();
+                    objE_ContadorDet.Observacion = txtObservacion.Text;
+                    objE_ContadorDet.IdUsuario = Utilitarios.Utilitarios.gintIdUsuario;
                     //    }
                     //    else
                     //    {
                     //        GlobalClass.ip.Mensaje("Error de Duplicidad", 2);
                     //    }
                     //}
-                    
 
-                    string DescError = "";
+
+                    string DescError = String.Empty;
                     int resp = objB_ContadorDet.ContadorDet_UpdateProcess(objE_ContadorDet, out DescError);
                     if (resp > 0)
                     {
@@ -390,6 +382,8 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             bool bolRpta = false;
             try
             {
+                txtFechaIni.EditValue = txtFechaIni.DisplayText;
+
                 if (cboUC.SelectedIndex == -1)
                 {
                     bolRpta = true;
@@ -466,17 +460,51 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             int IdColumna = Convert.ToInt32(cboTipoOperacion.EditValue);
             cboNroOperacion.Visibility = (IdColumna == 2) ? Visibility.Visible : Visibility.Collapsed;
-            
+
+            if (cboTipoOperacion.EditValue == null) return;
+            TraerUltimoContador(objE_ContadorDet);
         }
 
         private void cboUC_SelectedIndexChanged(object sender, RoutedEventArgs e)
         {
             if (cboUC.EditValue == null) return;
+
             objE_ContadorDet.IdTipoOperacion = 1;
             objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
-            DataView dtv=objB_ContadorDet.ContadorDet_List(objE_ContadorDet).DefaultView;
+            DataView dtv = objB_ContadorDet.ContadorDet_List(objE_ContadorDet).DefaultView;
             cboNroOperacion.ItemsSource = dtv;
+
+            TraerUltimoContador(objE_ContadorDet);
         }
 
+        public void TraerUltimoContador(E_ContadorDet eContador)
+        {
+            try
+            {
+                //Traer ultimo contador
+
+                string DescError = string.Empty;
+                objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
+
+                DataTable resultado = objB_ContadorDet.ContadorDet_GetLastRecord(objE_ContadorDet, out DescError);
+                if (resultado.Rows.Count > 0)
+                {
+                    txtContadorIni.EditValue = resultado.Rows[0]["ContadorFin"].ToString();
+                    txtFechaIni.EditValue = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("MM/dd/yyyy HH:mm");
+                    txtFechaFin.Focus();
+                }
+                else
+                {
+                    txtContadorIni.Text = string.Empty;
+                    txtFechaIni.Text = String.Empty;
+                    txtFechaIni.EditValue = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
     }
 }

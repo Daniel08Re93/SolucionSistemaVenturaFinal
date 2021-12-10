@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
+﻿using System.Data;
 using Entities;
 using Data;
 using Utilitarios;
@@ -62,5 +58,9 @@ namespace Business
             Debug.EscribirDebug(Metodo, Parametros);
         }
 
+        public DataTable ContadorDet_GetLastRecord(E_ContadorDet Obje, out string DescError)
+        {
+            return D_ContadorDet.ContadorDet_GetLastRecord(Obje,out DescError);
+        }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using Entities;
@@ -114,5 +111,29 @@ namespace Data
             return tbl;
         }
 
+
+        public static DataTable ContadorDet_GetLastRecord(E_ContadorDet objE, out string DescError)
+        {
+            DataTable tbl = new DataTable();
+            using (SqlConnection cn = Conexion.ObtenerConexion())
+            {
+                SqlCommand cmd = new SqlCommand("ContadorDet_LastRecord", cn);
+                cn.Open();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@CodUC", SqlDbType.VarChar, 20).Value = objE.CodUc;
+                cmd.Parameters.Add("@IdError", SqlDbType.Int).Value = 0;
+                cmd.Parameters["@IdError"].Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@DescError", SqlDbType.VarChar, 200).Value = string.Empty;
+                cmd.Parameters["@DescError"].Direction = ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+                DescError = cmd.Parameters["@DescError"].Value.ToString();
+               
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(tbl);
+                cn.Close();
+            }
+            return tbl;
+        }
     }
 }
