@@ -101,6 +101,7 @@
     <Compile Include="B_UCIncidenciaDet.cs" />
     <Compile Include="B_Usuario.cs" />
     <Compile Include="B_Alertas.cs" />
+    <Compile Include="Enumeracion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

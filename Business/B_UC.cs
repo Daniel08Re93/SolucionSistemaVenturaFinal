@@ -42,6 +42,13 @@ namespace Business
             tbl = D_UC.UC_GetItem(E_UC);
             return tbl;
         }
+
+        public E_UC B_UC_GetItemByCodUC(E_UC E_UC)
+        {
+            E_UC = D_UC.UC_GetItemByCodUC(E_UC);
+            return E_UC;
+        }
+
         public DataTable B_UC_Combo(E_UC E_UC)
         {
             UC_Debug("B_UC_Combo", E_UC);
