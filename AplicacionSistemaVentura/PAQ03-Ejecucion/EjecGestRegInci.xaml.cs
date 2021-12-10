@@ -5,6 +5,8 @@ using System.Windows.Input;
 using System.Data;
 using Entities;
 using Business;
+using static Utilitarios.Utilitarios;
+using Utilitarios.Enum;
 
 namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 {
@@ -235,7 +237,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     objE_ContadorDet.IdTipoOperacion = IdTipoOperacion;
                     objE_ContadorDet.NroDocOperacion = NroDocOperacion;
                     objE_ContadorDet.IdDocCorregir = IdDocCorregir;
-                    objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.EditValue);
+                    objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.DisplayText);
                     objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.EditValue);
                     objE_ContadorDet.ContadorIni = Convert.ToDouble(txtContadorIni.EditValue);
                     objE_ContadorDet.ContadorFin = Convert.ToDouble(txtContadorFin.EditValue);
@@ -384,8 +386,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             bool bolRpta = false;
             try
             {
-                txtFechaIni.EditValue = txtFechaIni.DisplayText;
-
+                
                 if (cboUC.SelectedIndex == -1)
                 {
                     bolRpta = true;
@@ -444,7 +445,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     bolRpta = true;
                     GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "OBLI_AFEC"), 2);
                 }
-                else if (Convert.ToDateTime(txtFechaFin.EditValue) < Convert.ToDateTime(txtFechaIni.EditValue))
+                else if (Convert.ToDateTime(txtFechaFin.EditValue) < Convert.ToDateTime(txtFechaIni.DisplayText))
                 {
                     bolRpta = true;
                     GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "LOGI_FFEC_MENO"), 2);
@@ -475,7 +476,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
             TraerCiclodeUnidadControl();
             TraerUltimoContador();
-         
+
         }
 
         public void TraerUltimoContador()
@@ -492,6 +493,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 {
                     txtContadorIni.EditValue = resultado.Rows[0]["ContadorFin"].ToString();
                     txtFechaIni.EditValue = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("MM/dd/yyyy HH:mm");
+                    //txtFechaIni.EditValue = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("dd/MM/yyyy HH:mm");
                     txtFechaFin.Focus();
                 }
                 else
@@ -525,6 +527,17 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 if (ePerfil != null)
                 {
                     txtCiclo.Text = ePerfil.Ciclo;
+
+                    if (ePerfil.Ciclo == "Horas")
+                    {
+                        txtContadorIni.IsEnabled = false;
+                        txtContadorFin.IsEnabled = false;
+                    }
+                    else
+                    {
+                        txtContadorIni.IsEnabled = true;
+                        txtContadorFin.IsEnabled = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -545,7 +558,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 objUnidadControl = objB_UC.B_UC_GetItemByCodUC(objUnidadControl);
                 if (objUnidadControl != null)
                 {
-                    if (objUnidadControl.IdEstadoUC == (int)Enumeracion.EstadoUC.Registrado)
+                    if (objUnidadControl.IdEstadoUC == (int)EstadoUCEnum.Registrado)
                     {
                         GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "OBLI_UC_ACTIVO"), 2);
                         return true;
@@ -558,6 +571,91 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
             }
             return rpta;
+        }
+
+        public bool VerificarTieneContador()
+        {
+            try
+            {
+                //Verifica si ya tiene un registro de contador
+                string DescError = string.Empty;
+                objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
+
+                DataTable resultado = objB_ContadorDet.ContadorDet_GetLastRecord(objE_ContadorDet, out DescError);
+                if (resultado.Rows.Count > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+
+            return false;
+        }
+
+        private void txtFechaIni_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            try
+            {
+                CalcuarTiempo();
+                txtObservacion.Focus();
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        private void txtFechaFin_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            try
+            {
+                CalcuarTiempo();
+                txtObservacion.Focus();
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        public void CalcuarTiempo()
+        {
+            try
+            {
+                if (txtCiclo.Text == "Horas" && txtFechaIni.Text != "" && txtFechaFin.Text != "")
+                {
+                    decimal  minutos, calculoMinutos = 0;
+                    minutos = DateDiff(DateInterval.Minute, Convert.ToDateTime(txtFechaIni.EditValue), Convert.ToDateTime(txtFechaFin.EditValue));
+                    TimeSpan Diff_dates = Convert.ToDateTime(txtFechaFin.EditValue).Subtract(Convert.ToDateTime(txtFechaIni.EditValue));
+
+                    bool rpta = VerificarTieneContador();
+
+                    if (rpta == false)
+                    {
+
+                        calculoMinutos = (1 * minutos) / 60;
+                        txtContadorIni.EditValue = 0;
+                        txtContadorFin.EditValue = calculoMinutos;
+                    }
+                    else
+                    {
+                        calculoMinutos = (1 * minutos) / 60;
+                        txtContadorFin.EditValue =Convert.ToDecimal(txtContadorIni.EditValue) + calculoMinutos;
+                    }
+              
+                }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
         }
     }
 }

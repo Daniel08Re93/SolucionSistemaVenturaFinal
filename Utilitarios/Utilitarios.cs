@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Data;
-using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Media;
 using System.Reflection;
 
 namespace Utilitarios
@@ -383,5 +380,58 @@ namespace Utilitarios
 
             return ResultDataTable;
         }
+
+
+        public static long DateDiff(DateInterval interval, DateTime date1, DateTime date2)
+        {
+            long rs = 0; TimeSpan diff = date2.Subtract(date1);
+            switch (interval)
+            {
+                case DateInterval.Day:
+                case DateInterval.DayOfYear:
+                    rs = (long)diff.TotalDays;
+                    break;
+                case DateInterval.Hour:
+                    rs = (long)diff.TotalHours;
+                    break;
+                case DateInterval.Minute:
+                    rs = (long)diff.TotalMinutes;
+                    break;
+                case DateInterval.Month:
+                    rs = (date2.Month - date1.Month) + (12 * Utilitarios.DateDiff(DateInterval.Year, date1, date2));
+                    break;
+                case DateInterval.Quarter:
+                    rs = (long)Math.Ceiling((double)(Utilitarios.DateDiff(DateInterval.Month, date1, date2) / 3.0));
+                    break;
+                case DateInterval.Second:
+                    rs = (long)diff.TotalSeconds;
+                    break;
+                case DateInterval.Weekday:
+                case DateInterval.WeekOfYear:
+                    rs = (long)(diff.TotalDays / 7);
+                    break;
+                case DateInterval.Year:
+                    rs = date2.Year - date1.Year;
+                    break;
+            }//switch   
+            return rs;
+        }//DateDiff
+
+
+        public enum DateInterval
+        {
+            Day,
+            DayOfYear,
+            Hour,
+            Minute,
+            Month,
+            Quarter,
+            Second,
+            Weekday,
+            WeekOfYear,
+            Year
+        }
+
     }
 }
+
