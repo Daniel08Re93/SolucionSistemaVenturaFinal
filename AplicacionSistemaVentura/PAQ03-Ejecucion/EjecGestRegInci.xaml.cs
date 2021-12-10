@@ -382,11 +382,9 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
         private bool ValidaCampoObligado()
         {
-
             bool bolRpta = false;
             try
-            {
-                
+            { 
                 if (cboUC.SelectedIndex == -1)
                 {
                     bolRpta = true;
@@ -493,7 +491,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 {
                     txtContadorIni.EditValue = resultado.Rows[0]["ContadorFin"].ToString();
                     txtFechaIni.EditValue = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("MM/dd/yyyy HH:mm");
-                    //txtFechaIni.EditValue = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("dd/MM/yyyy HH:mm");
                     txtFechaFin.Focus();
                 }
                 else
@@ -515,7 +512,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 //Traer ciclo de la unidad
-
                 string DescError = string.Empty;
 
                 B_Perfil bPerfil = new B_Perfil();
@@ -632,13 +628,11 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 {
                     decimal  minutos, calculoMinutos = 0;
                     minutos = DateDiff(DateInterval.Minute, Convert.ToDateTime(txtFechaIni.EditValue), Convert.ToDateTime(txtFechaFin.EditValue));
-                    TimeSpan Diff_dates = Convert.ToDateTime(txtFechaFin.EditValue).Subtract(Convert.ToDateTime(txtFechaIni.EditValue));
 
                     bool rpta = VerificarTieneContador();
 
                     if (rpta == false)
                     {
-
                         calculoMinutos = (1 * minutos) / 60;
                         txtContadorIni.EditValue = 0;
                         txtContadorFin.EditValue = calculoMinutos;
@@ -648,7 +642,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                         calculoMinutos = (1 * minutos) / 60;
                         txtContadorFin.EditValue =Convert.ToDecimal(txtContadorIni.EditValue) + calculoMinutos;
                     }
-              
                 }
             }
             catch (Exception ex)
