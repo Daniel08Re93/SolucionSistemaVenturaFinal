@@ -59,7 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constantes\CicloConst.cs" />
     <Compile Include="DebugHandler.cs" />
+    <Compile Include="Enum\EstadoUCEnum.cs" />
     <Compile Include="ErrorHandler.cs" />
     <Compile Include="IniParser.cs" />
     <Compile Include="TreeViewModel.cs" />

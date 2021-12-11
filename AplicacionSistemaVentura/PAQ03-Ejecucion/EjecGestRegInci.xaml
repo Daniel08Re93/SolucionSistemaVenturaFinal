@@ -21,7 +21,7 @@
                             </dxg:GridColumn>
                             <dxg:GridColumn FieldName="TipoOperacion" VisibleIndex="1" Header="Tipo&#10;Operación" Width="90"/>
                             <dxg:GridColumn FieldName="PlacaSerie" VisibleIndex="2" Width="70" />
-                            <dxg:GridColumn FieldName="Evento" VisibleIndex="3" Width="100"/> 
+                            <dxg:GridColumn FieldName="Evento" VisibleIndex="3" Width="100"/>
                             <dxg:GridColumn FieldName="FechaIni" VisibleIndex="4" Header="Fecha Inicial"/>
                             <dxg:GridColumn FieldName="ContadorIni" VisibleIndex="5" Header="Contador&#10;Inicial" Width="60"/>
                             <dxg:GridColumn FieldName="FechaFin" VisibleIndex="6" Header="Fecha&#10;Final"/>
@@ -38,7 +38,7 @@
                                 ShowGroupPanel="False" ShowSearchPanelMode="Always"                                
                                 SearchPanelHorizontalAlignment="Left" ShowIndicator="True"
                                 AlternateRowBackground="AliceBlue" AllowEditing="False"
-                                AutoWidth="True" />                            
+                                AutoWidth="True" />
                         </dxg:GridControl.View>
                     </dxg:GridControl>
                     <Button Style="{DynamicResource buttonStyle}" Content="Registrar" Name="btnNuevo" Click="btnNuevo_Click" HorizontalAlignment="Left" Margin="10,0,0,10"  VerticalAlignment="Bottom" />
@@ -56,23 +56,27 @@
             </TabItem >
             <TabItem Header="Datos Incidencias" Name="tabDetalle" IsEnabled="False">
                 <Grid>
-                    <Label Content="Unidad de Control:" Height="28" HorizontalAlignment="Left" Margin="10,20,0,0" Name="label2" VerticalAlignment="Top" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="78*"/>
+                        <ColumnDefinition Width="827*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Unidad de Control:" Height="28" HorizontalAlignment="Left" Margin="10,20,0,0" Name="label2" VerticalAlignment="Top" Grid.ColumnSpan="2" />
                     <Label Content="Solicitante:" Height="28" HorizontalAlignment="Left" Margin="10,100,0,0" Name="label3" VerticalAlignment="Top" />
-                    <Label Content="Tipo Operacion:" Height="28" HorizontalAlignment="Left" Margin="340,60,0,0" Name="label4" VerticalAlignment="Top" />
-                    <Label Content="Responsable:" Height="28" HorizontalAlignment="Left" Margin="340,100,0,0" Name="label8" VerticalAlignment="Top" />
-                    <Label Content="Origen de Registro:" Height="28" HorizontalAlignment="Left" Margin="340,20,0,0" Name="label7" VerticalAlignment="Top" />
+                    <Label Content="Tipo Operacion:" Height="28" HorizontalAlignment="Left" Margin="262,60,0,0" Name="label4" VerticalAlignment="Top" Grid.Column="1" />
+                    <Label Content="Responsable:" Height="28" HorizontalAlignment="Left" Margin="262,100,0,0" Name="label8" VerticalAlignment="Top" Grid.Column="1" />
+                    <Label Content="Origen de Registro:" Height="28" HorizontalAlignment="Left" Margin="262,20,0,0" Name="label7" VerticalAlignment="Top" Grid.Column="1" />
                     <Label Content="Fecha Inicial:" Height="28" HorizontalAlignment="Left" Margin="10,162,0,0" Name="label16" VerticalAlignment="Top" />
-                    <Label Content="Contador Inicial:" Height="28" HorizontalAlignment="Left" Margin="10,202,0,0" Name="label17" VerticalAlignment="Top" />
-                    <Label Content="Fecha Final:" Height="28" HorizontalAlignment="Left" Margin="240,162,0,0" Name="label18" VerticalAlignment="Top" />
-                    <Label Content="Contador Final:" Height="28" HorizontalAlignment="Left" Margin="240,202,0,0" Name="label19" VerticalAlignment="Top" />
+                    <Label Content="Contador Inicial:" Height="28" HorizontalAlignment="Left" Margin="10,202,0,0" Name="label17" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <Label Content="Fecha Final:" Height="28" HorizontalAlignment="Left" Margin="162,162,0,0" Name="label18" VerticalAlignment="Top" Grid.Column="1" />
+                    <Label Content="Contador Final:" Height="28" HorizontalAlignment="Left" Margin="162,202,0,0" Name="label19" VerticalAlignment="Top" Grid.Column="1" />
                     <Label Content="Observación:" Height="28" HorizontalAlignment="Left" Margin="10,240,0,0" Name="label20" VerticalAlignment="Top" />
                     <Label Content="Evento:" Height="28" HorizontalAlignment="Left" Margin="10,60,0,0" Name="label5" VerticalAlignment="Top" />
 
-                    <dxe:ComboBoxEdit  HorizontalAlignment="Left" Margin="110,20,0,0" Name="cboUC" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" SelectedIndexChanged="cboUC_SelectedIndexChanged" />
-                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="450,20,0,0" Name="cboOrigenRegistro" VerticalAlignment="Top" Width="179" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
-                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="110,60,0,0" Name="cboEvento" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
-                    <dxe:ComboBoxEdit  HorizontalAlignment="Left" Margin="450,60,0,0" Name="cboTipoOperacion" VerticalAlignment="Top" Width="180" SelectedIndexChanged="cboTipoOperacion_SelectedIndexChanged" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
-                    <dxg:LookUpEdit Name="cboNroOperacion" DisplayMember="NroDocOperacion" ValueMember="IdContadorDet" AutoPopulateColumns="False" AutoComplete="True" IncrementalFiltering="True" ImmediatePopup="True" IsPopupAutoWidth="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="645,59,0,0">
+                    <dxe:ComboBoxEdit  HorizontalAlignment="Left" Margin="32,20,0,0" Name="cboUC" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" SelectedIndexChanged="cboUC_SelectedIndexChanged" Grid.Column="1" />
+                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="372,20,0,0" Name="cboOrigenRegistro" VerticalAlignment="Top" Width="179" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="32,60,0,0" Name="cboEvento" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit  HorizontalAlignment="Left" Margin="372,60,0,0" Name="cboTipoOperacion" VerticalAlignment="Top" Width="180" SelectedIndexChanged="cboTipoOperacion_SelectedIndexChanged" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
+                    <dxg:LookUpEdit Name="cboNroOperacion" DisplayMember="NroDocOperacion" ValueMember="IdContadorDet" AutoPopulateColumns="False" AutoComplete="True" IncrementalFiltering="True" ImmediatePopup="True" IsPopupAutoWidth="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="567,59,0,0" Grid.Column="1">
                         <dxg:LookUpEdit.PopupContentTemplate>
                             <ControlTemplate>
                                 <dxg:GridControl Name="PART_GridControl">
@@ -91,19 +95,19 @@
                             </ControlTemplate>
                         </dxg:LookUpEdit.PopupContentTemplate>
                     </dxg:LookUpEdit>
-                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="110,100,0,0" Name="CboSolicitante" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
-                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="450,100,0,0" Name="CboResponsable" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False"/>
-                    <dxe:TextEdit EditValue="02.09.2009 3:14" HorizontalAlignment="Left" Margin="110,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaIni" VerticalAlignment="Top" Width="110" />                    
-                    <dxe:TextEdit EditValue="02.09.2009 3:14" HorizontalAlignment="Left" Margin="330,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaFin" VerticalAlignment="Top" Width="110" />
-                    <dxe:TextEdit HorizontalAlignment="Left" Margin="110,202,0,0" Name="txtContadorIni" Style="{DynamicResource FormatoDecimal}" EditValue="0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right"/>
-                    <dxe:TextEdit HorizontalAlignment="Left" Margin="330,202,0,0" Name="txtContadorFin" Style="{DynamicResource FormatoDecimal}" EditValue="0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right"/>
-                    <dxe:TextEdit Height="67" HorizontalAlignment="Left" Margin="112,240,0,0" Name="txtObservacion" Style="{DynamicResource FormatoAlfanumericoEspecialMax200}" VerticalAlignment="Top" Width="329" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" />
-                    
-                    <Button Style="{DynamicResource buttonStyle}" Width="100" IsDefault="True"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,30" Content="Grabar" Name="btnGrabar" Click="btnGrabar_Click"/>
-                    <Button Style="{DynamicResource buttonStyle}" Width="100" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="120,0,0,30" Content="Cancelar" Name="BtnCancelar" Click="BtnCancelar_Click"/>
+                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="32,100,0,0" Name="CboSolicitante" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
+                    <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="372,100,0,0" Name="CboResponsable" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
+                    <dxe:TextEdit EditValue="" HorizontalAlignment="Left" Margin="32,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaIni" VerticalAlignment="Top" Width="110" EditValueChanged="txtFechaIni_EditValueChanged" Grid.Column="1" />
+                    <dxe:TextEdit EditValue="" HorizontalAlignment="Left" Margin="252,162,0,0" Mask="dd/MM/yyyy HH:mm" MaskType="DateTime" MaskUseAsDisplayFormat="True" Name="txtFechaFin" VerticalAlignment="Top" Width="110" EditValueChanged="txtFechaFin_EditValueChanged" Grid.Column="1" />
+                    <dxe:TextEdit HorizontalAlignment="Left" Margin="32,202,0,0" Name="txtContadorIni" Style="{DynamicResource FormatoDecimal}" EditValue="0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" Grid.Column="1"/>
+                    <dxe:TextEdit HorizontalAlignment="Left" Margin="252,202,0,0" Name="txtContadorFin" Style="{DynamicResource FormatoDecimal}" EditValue="0" VerticalAlignment="Top" Width="110" HorizontalContentAlignment="Right" Grid.Column="1"/>
+                    <dxe:TextEdit Height="67" HorizontalAlignment="Left" Margin="34,240,0,0" Name="txtObservacion" Style="{DynamicResource FormatoAlfanumericoEspecialMax200}" VerticalAlignment="Top" Width="329" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" Grid.Column="1" />
 
-                    <Label Content="Codigo Incidencia:" Height="28" HorizontalAlignment="Left" Visibility="Hidden" Margin="233,13,0,0" Name="lblCodInc" VerticalAlignment="Top" Width="98" />
-                    <DockPanel Margin="0,0,0,0" Visibility="Visible" Name="sbAuditoria" VerticalAlignment="Bottom">
+                    <Button Style="{DynamicResource buttonStyle}" Width="100" IsDefault="True"   HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,30" Content="Grabar" Name="btnGrabar" Click="btnGrabar_Click" Grid.ColumnSpan="2"/>
+                    <Button Style="{DynamicResource buttonStyle}" Width="100" IsCancel="True" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="42,0,0,30" Content="Cancelar" Name="BtnCancelar" Click="BtnCancelar_Click" Grid.Column="1"/>
+
+                    <Label Content="Codigo Incidencia:" Height="28" HorizontalAlignment="Left" Visibility="Hidden" Margin="155,13,0,0" Name="lblCodInc" VerticalAlignment="Top" Width="98" Grid.Column="1" />
+                    <DockPanel Margin="0,0,0,0" Visibility="Visible" Name="sbAuditoria" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                         <StatusBar DockPanel.Dock="Top" Style="{DynamicResource Auditoria}">
                             <StatusBar.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -135,6 +139,8 @@
                             </StatusBarItem>
                         </StatusBar>
                     </DockPanel>
+                    <Label Content="Ciclo:" Height="28" HorizontalAlignment="Left" Margin="567,20,0,0" x:Name="lblCiclo" VerticalAlignment="Top" Grid.Column="1" />
+                    <TextBox x:Name="txtCiclo" HorizontalAlignment="Left" Margin="599,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" Grid.Column="1"/>
                 </Grid>
             </TabItem>
         </TabControl>

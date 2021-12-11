@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Entities
 {
     public class E_Perfil
@@ -22,5 +19,6 @@ namespace Entities
         public int IdCicloDefecto { get; set; }
         public int IdUC { get; set; } //Agregado para Filtro de Ciclo_ComboByUC
         public int IdTipoCiclo { get; set; } //Agregado para Filtro de CicloCombo
+        public string Ciclo { set; get; }
     }
 }
