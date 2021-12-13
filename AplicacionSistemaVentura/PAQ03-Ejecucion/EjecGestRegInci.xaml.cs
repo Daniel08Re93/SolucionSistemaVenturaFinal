@@ -7,6 +7,7 @@ using Entities;
 using Business;
 using static Utilitarios.Utilitarios;
 using Utilitarios.Enum;
+using Utilitarios.Constantes;
 
 namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 {
@@ -624,7 +625,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             try
             {
-                if (txtCiclo.Text == "Horas" && txtFechaIni.Text != "" && txtFechaFin.Text != "")
+                if (txtCiclo.Text == CicloConst.Horas && txtFechaIni.Text != "" && txtFechaFin.Text != "")
                 {
                     decimal  minutos, calculoMinutos = 0;
                     minutos = DateDiff(DateInterval.Minute, Convert.ToDateTime(txtFechaIni.EditValue), Convert.ToDateTime(txtFechaFin.EditValue));
