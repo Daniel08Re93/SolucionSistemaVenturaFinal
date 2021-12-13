@@ -115,6 +115,8 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 cboTipoOperacion.SelectedIndex = -1;
                 cboTipoOperacion.SelectedIndexChanged += new RoutedEventHandler(cboTipoOperacion_SelectedIndexChanged);
 
+                txtContadorIni.EditValue = 0.0;
+
                 btnBuscar_Click(null, null);
             }
             catch (Exception ex)
@@ -496,7 +498,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 }
                 else
                 {
-                    txtContadorIni.Text = string.Empty;
+                    txtContadorIni.EditValue = 0.0;
                     txtFechaIni.Text = String.Empty;
                     txtFechaIni.EditValue = null;
                 }
@@ -525,7 +527,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 {
                     txtCiclo.Text = ePerfil.Ciclo;
 
-                    if (ePerfil.Ciclo == "Horas")
+                    if (ePerfil.Ciclo == CicloConst.Horas)
                     {
                         txtContadorIni.IsEnabled = false;
                         txtContadorFin.IsEnabled = false;
