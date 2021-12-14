@@ -76,10 +76,10 @@
                     <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="372,20,0,0" Name="cboOrigenRegistro" VerticalAlignment="Top" Width="179" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
                     <dxe:ComboBoxEdit HorizontalAlignment="Left" Margin="32,60,0,0" Name="cboEvento" VerticalAlignment="Top" Width="180" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
                     <dxe:ComboBoxEdit  HorizontalAlignment="Left" Margin="372,60,0,0" Name="cboTipoOperacion" VerticalAlignment="Top" Width="180" SelectedIndexChanged="cboTipoOperacion_SelectedIndexChanged" AutoComplete="False" FilterCondition="Contains" IncrementalFiltering="True" ValidateOnTextInput="False" Grid.Column="1"/>
-                    <dxg:LookUpEdit Name="cboNroOperacion" DisplayMember="NroDocOperacion" ValueMember="IdContadorDet" AutoPopulateColumns="False" AutoComplete="True" IncrementalFiltering="True" ImmediatePopup="True" IsPopupAutoWidth="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="567,59,0,0" Grid.Column="1">
+                    <dxg:LookUpEdit Name="cboNroOperacion" DisplayMember="NroDocOperacion" ValueMember="IdContadorDet" AutoPopulateColumns="False" AutoComplete="True" IncrementalFiltering="True" ImmediatePopup="True" IsPopupAutoWidth="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="130" Margin="567,59,0,0" Grid.Column="1" >
                         <dxg:LookUpEdit.PopupContentTemplate>
                             <ControlTemplate>
-                                <dxg:GridControl Name="PART_GridControl">
+                                <dxg:GridControl Name="PART_GridControl" GotFocus="PART_GridControl_GotFocus">
                                     <dxg:GridControl.Columns>
                                         <dxg:GridColumn FieldName="NroDocOperacion" />
                                         <dxg:GridColumn FieldName="PlacaSerie" />
