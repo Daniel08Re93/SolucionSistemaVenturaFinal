@@ -387,7 +387,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             bool bolRpta = false;
             try
-            { 
+            {
                 if (cboUC.SelectedIndex == -1)
                 {
                     bolRpta = true;
@@ -464,6 +464,16 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             int IdColumna = Convert.ToInt32(cboTipoOperacion.EditValue);
             cboNroOperacion.Visibility = (IdColumna == 2) ? Visibility.Visible : Visibility.Collapsed;
+
+            if (IdColumna == 2)
+            {
+                LimpiarContador();
+                cboNroOperacion.Focus();
+            }
+            else
+            {
+                TraerUltimoContador();
+            }
         }
 
         private void cboUC_SelectedIndexChanged(object sender, RoutedEventArgs e)
@@ -485,9 +495,12 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 //Traer ciclo
+                if (cboUC.EditValue == null) return;
 
                 string DescError = string.Empty;
                 objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
+
+                LimpiarContador();
 
                 DataTable resultado = objB_ContadorDet.ContadorDet_GetLastRecord(objE_ContadorDet, out DescError);
                 if (resultado.Rows.Count > 0)
@@ -495,12 +508,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     txtContadorIni.EditValue = resultado.Rows[0]["ContadorFin"].ToString();
                     txtFechaIni.EditValue = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("MM/dd/yyyy HH:mm");
                     txtFechaFin.Focus();
-                }
-                else
-                {
-                    txtContadorIni.EditValue = 0.0;
-                    txtFechaIni.Text = String.Empty;
-                    txtFechaIni.EditValue = null;
                 }
             }
             catch (Exception ex)
@@ -577,6 +584,9 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 //Verifica si ya tiene un registro de contador
+
+                if (cboUC.EditValue == null) return false;
+
                 string DescError = string.Empty;
                 objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
 
@@ -600,7 +610,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 CalcuarTiempo();
-                txtObservacion.Focus();
+                //txtObservacion.Focus();
             }
             catch (Exception ex)
             {
@@ -627,9 +637,12 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             try
             {
+
+                if (cboUC.EditValue == null) return;
+
                 if (txtCiclo.Text == CicloConst.Horas && txtFechaIni.Text != "" && txtFechaFin.Text != "")
                 {
-                    decimal  minutos, calculoMinutos = 0;
+                    decimal minutos, calculoMinutos = 0;
                     minutos = DateDiff(DateInterval.Minute, Convert.ToDateTime(txtFechaIni.EditValue), Convert.ToDateTime(txtFechaFin.EditValue));
 
                     bool rpta = VerificarTieneContador();
@@ -643,9 +656,66 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     else
                     {
                         calculoMinutos = (1 * minutos) / 60;
-                        txtContadorFin.EditValue =Convert.ToDecimal(txtContadorIni.EditValue) + calculoMinutos;
+                        txtContadorFin.EditValue = Convert.ToDecimal(txtContadorIni.EditValue) + calculoMinutos;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        private void PART_GridControl_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                if (cboNroOperacion.ItemsSource != null)
+                {
+                    dynamic b = cboNroOperacion.ItemsSource;
+
+                    if (b.Table.Rows.Count > 0)
+                    {
+
+                        var fechaIni = Convert.ToDateTime(b.Table.Rows[0][14]).ToString("MM/dd/yyyy HH:mm");
+                        var contadorIni = b.Table.Rows[0][15];
+                        var fechaFin = Convert.ToDateTime(b.Table.Rows[0][16]).ToString("MM/dd/yyyy HH:mm");
+                        var contadorFin = b.Table.Rows[0][17];
+
+                        cboNroOperacion.EditValue = b.Table.Rows[0][11];
+                        cboNroOperacion.Text = b.Table.Rows[0][11];
+
+                        txtFechaIni.EditValue = fechaIni;
+                        txtContadorIni.EditValue = contadorIni;
+                        txtFechaFin.EditValue = fechaFin;
+                        txtContadorFin.EditValue = contadorFin;
+
+                        txtObservacion.Focus();
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        public void LimpiarContador()
+        {
+            try
+            {
+                //Limpiar contadores
+
+                txtContadorIni.EditValue = 0.0;
+                txtContadorFin.EditValue = 0.0;
+                txtFechaIni.EditValue = null;
+                txtFechaFin.EditValue = null;
+                txtFechaIni.EditValue = string.Empty;
+                txtFechaFin.EditValue = string.Empty;
             }
             catch (Exception ex)
             {
