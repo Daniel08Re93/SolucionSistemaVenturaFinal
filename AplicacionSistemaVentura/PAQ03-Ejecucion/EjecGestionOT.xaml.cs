@@ -2847,6 +2847,8 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 LblSelected.Content = "Seleccionar una actividad...";
+                if (trvComp.SelectedItem == null) return;
+
                 TreeViewModelCompOT trm = (TreeViewModelCompOT)trvComp.SelectedItem;
                 int idPerfilComp = Convert.ToInt32(trm.IdMenu);
                 int idotComp = Convert.ToInt32(trm.IdOTComp);
@@ -3898,6 +3900,9 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             {
                 //MessageBox.Show(lstboxActividad.Tag.ToString());
                 DataRowView dr = (lstboxActividad.SelectedItem) as DataRowView;
+
+                if (dr == null) return;
+
                 objETarea.IdActividad = 0;
                 objETarea.Actividad = dr.Row["Actividad"].ToString();
                 LblSelected.Content = dr.Row["Actividad"].ToString();
