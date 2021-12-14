@@ -62,5 +62,10 @@ namespace Business
         {
             return D_ContadorDet.ContadorDet_GetLastRecord(Obje,out DescError);
         }
+
+        public DataTable ContadorDet_GetPenultimateRecord(E_ContadorDet Obje, out string DescError)
+        {
+            return D_ContadorDet.ContadorDet_GetPenultimateRecord(Obje, out DescError);
+        }
     }
 }
