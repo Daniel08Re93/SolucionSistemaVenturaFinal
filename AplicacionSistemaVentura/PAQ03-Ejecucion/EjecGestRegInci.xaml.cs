@@ -195,6 +195,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 {
                     if (ValidaCampoObligado() == true) return;
                     if (ValidaEstadoUnidadControl() == true) return;
+                    //if (ValidaCorrecion() == true) return;
 
                     int IdTipoOperacion = Convert.ToInt32(cboTipoOperacion.EditValue);
                     string NroDocOperacion = "";
@@ -241,7 +242,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     objE_ContadorDet.NroDocOperacion = NroDocOperacion;
                     objE_ContadorDet.IdDocCorregir = IdDocCorregir;
                     objE_ContadorDet.FechaHoraIni = Convert.ToDateTime(txtFechaIni.DisplayText);
-                    objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.EditValue);
+                    objE_ContadorDet.FechaHoraFin = Convert.ToDateTime(txtFechaFin.DisplayText);
                     objE_ContadorDet.ContadorIni = Convert.ToDouble(txtContadorIni.EditValue);
                     objE_ContadorDet.ContadorFin = Convert.ToDouble(txtContadorFin.EditValue);
                     //objE_ContadorDet.CodSolicitante = "44";
@@ -494,7 +495,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             try
             {
-                //Traer ciclo
+                //Traer la ultima incidencia registrada
                 if (cboUC.EditValue == null) return;
 
                 string DescError = string.Empty;
@@ -584,7 +585,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 //Verifica si ya tiene un registro de contador
-
                 if (cboUC.EditValue == null) return false;
 
                 string DescError = string.Empty;
@@ -696,7 +696,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     }
                 }
             }
-
             catch (Exception ex)
             {
                 GlobalClass.ip.Mensaje(ex.Message, 3);
@@ -709,7 +708,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 //Limpiar contadores
-
                 txtContadorIni.EditValue = 0.0;
                 txtContadorFin.EditValue = 0.0;
                 txtFechaIni.EditValue = null;
@@ -723,5 +721,49 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
             }
         }
+
+        private bool ValidaCorrecion()
+        {
+            bool rpta = false;
+            try
+            {
+
+                if(Convert.ToInt32(cboTipoOperacion.EditValue)==1) return rpta;
+
+                string DescError = string.Empty;
+                objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
+
+                DataTable resultado = objB_ContadorDet.ContadorDet_GetLastRecord(objE_ContadorDet, out DescError);
+                if (resultado.Rows.Count > 0)
+                {
+                    var contadorIni= resultado.Rows[0]["ContadorIni"].ToString();
+                    var fechaIni= Convert.ToDateTime(resultado.Rows[0]["FechaIni"]).ToString("MM/dd/yyyy HH:mm");
+                    var contadorFin = resultado.Rows[0]["ContadorFin"].ToString();
+                    var fechaFin = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("MM/dd/yyyy HH:mm");
+
+
+                    if (Convert.ToDouble(txtContadorFin.Text) < Convert.ToDouble(txtContadorIni.Text))
+                    {
+                        rpta = true;
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "LOGI_FCON_MENO"), 2);
+                    }
+                    else if (Convert.ToDateTime(txtFechaFin.EditValue) < Convert.ToDateTime(txtFechaIni.DisplayText))
+                    {
+                        rpta = true;
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "LOGI_FFEC_MENO"), 2);
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+            return rpta;
+        }
+
     }
 }
