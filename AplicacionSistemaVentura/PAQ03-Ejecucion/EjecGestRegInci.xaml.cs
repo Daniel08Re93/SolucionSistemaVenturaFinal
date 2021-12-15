@@ -473,6 +473,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             }
             else
             {
+                txtFechaIni.IsReadOnly = false;
                 TraerUltimoContador();
             }
         }
@@ -678,7 +679,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
                     if (b.Table.Rows.Count > 0)
                     {
-
                         var fechaIni = Convert.ToDateTime(b.Table.Rows[0][14]).ToString("MM/dd/yyyy HH:mm");
                         var contadorIni = b.Table.Rows[0][15];
                         var fechaFin = Convert.ToDateTime(b.Table.Rows[0][16]).ToString("MM/dd/yyyy HH:mm");
@@ -692,7 +692,8 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                         txtFechaFin.EditValue = fechaFin;
                         txtContadorFin.EditValue = contadorFin;
 
-                        txtObservacion.Focus();
+                        txtFechaIni.IsReadOnly = false;
+                        txtContadorFin.Focus();
                     }
                 }
             }
@@ -733,14 +734,13 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 string DescError = string.Empty;
                 objE_ContadorDet.CodUc = cboUC.EditValue.ToString();
 
-                DataTable resultado = objB_ContadorDet.ContadorDet_GetLastRecord(objE_ContadorDet, out DescError);
+                DataTable resultado = objB_ContadorDet.ContadorDet_GetPenultimateRecord(objE_ContadorDet, out DescError);
                 if (resultado.Rows.Count > 0)
                 {
                     var contadorIni= resultado.Rows[0]["ContadorIni"].ToString();
                     var fechaIni= Convert.ToDateTime(resultado.Rows[0]["FechaIni"]).ToString("MM/dd/yyyy HH:mm");
                     var contadorFin = resultado.Rows[0]["ContadorFin"].ToString();
                     var fechaFin = Convert.ToDateTime(resultado.Rows[0]["FechaFin"]).ToString("MM/dd/yyyy HH:mm");
-
 
                     if (Convert.ToDouble(txtContadorFin.Text) < Convert.ToDouble(txtContadorIni.Text))
                     {
@@ -752,8 +752,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                         rpta = true;
                         GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaRegistroIncidencias, "LOGI_FFEC_MENO"), 2);
                     }
-
-
                 }
 
             }
@@ -764,6 +762,5 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             }
             return rpta;
         }
-
     }
 }
