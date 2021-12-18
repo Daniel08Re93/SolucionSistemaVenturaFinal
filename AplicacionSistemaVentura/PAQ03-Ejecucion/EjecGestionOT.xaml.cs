@@ -80,6 +80,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         InterfazMTTO.iSBO_BE.BEWTQ1List WTQ1_List = new InterfazMTTO.iSBO_BE.BEWTQ1List();
         InterfazMTTO.iSBO_BE.BEOIGE OIGE = new InterfazMTTO.iSBO_BE.BEOIGE();
         InterfazMTTO.iSBO_BE.BEIGE1 IGE1 = new InterfazMTTO.iSBO_BE.BEIGE1();
+        InterfazMTTO.iSBO_BE.BEOITWList OITW_List = new InterfazMTTO.iSBO_BE.BEOITWList();
 
         Utilitarios.Utilitarios objBUtil = new Utilitarios.Utilitarios();
         Utilitarios.ErrorHandler Error = new Utilitarios.ErrorHandler();
@@ -5910,17 +5911,35 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 row["CantSol"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CantSol"]);
                 row["CantEnv"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CantEnv"]);
                 row["NroSolicitudTransferencia"] = 0;
-                row["CostoArticulo"] = 0;
-                for (int j = 0; j < WTQ1List.Count; j++)
+                //row["CostoArticulo"] = 0;
+
+                if(WTQ1List.Count == 0)
                 {
-                    if (Convert.ToInt32(tblOTCompDetDatos.Tables[1].Rows[i]["IdOTArticulo"]) == WTQ1List[j].NroLineaOT)
+                    //Obtener Costo Articulo SAP
+                    RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
+                    OITW_List = InterfazMTTO.iSBO_BL.Articulo_BL.ObtenerCostoArticulo(Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["IdArticulo"]), ref RPTA);
+                    if (RPTA.ResultadoRetorno != 0)
                     {
-                        row["CantEnv"] = WTQ1List[j].CantidadTransferida;
-                        row["NroSolicitudTransferencia"] = WTQ1List[j].NroSolicitudTransferencia;
-                        row["CostoArticulo"] = WTQ1List[j].CostoUnitario;
-                        break;
+                        GlobalClass.ip.Mensaje(RPTA.DescripcionErrorUsuario, 2);
+                        //return;
+                    }
+
+                    row["CostoArticulo"] = Convert.ToDouble(OITW_List[0].CostoArticulo);
+                }
+                else
+                {
+                    for (int j = 0; j < WTQ1List.Count; j++)
+                    {
+                        if (Convert.ToInt32(tblOTCompDetDatos.Tables[1].Rows[i]["IdOTArticulo"]) == WTQ1List[j].NroLineaOT)
+                        {
+                            row["CantEnv"] = WTQ1List[j].CantidadTransferida;
+                            row["NroSolicitudTransferencia"] = WTQ1List[j].NroSolicitudTransferencia;
+                            row["CostoArticulo"] = WTQ1List[j].CostoUnitario;
+                            break;
+                        }
                     }
                 }
+                
                 row["CantUti"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CantUti"]);
                 //row["CostoArticulo"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CostoArticulo"]);
                 row["Observacion"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["Observacion"]);

@@ -418,6 +418,7 @@
                                                 <dxg:GridColumn Header="C. Sol." FieldName="CantSol" VisibleIndex="3" Width="50" ReadOnly="True"/>
                                                 <dxg:GridColumn Header="C. Ent." FieldName="CantEnv" VisibleIndex="4" Width="50" ReadOnly="True"/>
                                                 <dxg:GridColumn Header="C. Uti." FieldName="CantUti" VisibleIndex="5" Width="50" ReadOnly="True"/>
+                                                <dxg:GridColumn Header="Costo" FieldName="CostoArticulo" VisibleIndex="8" Width="50" ReadOnly="True"/>
                                                 <dxg:GridColumn Header="Comentario" FieldName="Observacion" VisibleIndex="6" Visible="False" ReadOnly="True"/>
                                                 <dxg:GridColumn Header="Responsable" FieldName="Responsable" VisibleIndex="7" Visible="False" ReadOnly="True"/>
                                             </dxg:GridControl.Columns>
