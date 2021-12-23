@@ -76,6 +76,7 @@
     <Compile Include="B_Neumatico_ControlDet.cs" />
     <Compile Include="B_Neumatico_Transfer.cs" />
     <Compile Include="B_OT.cs" />
+    <Compile Include="B_OTArticulo.cs" />
     <Compile Include="B_OTComp.cs" />
     <Compile Include="B_OTIProv.cs" />
     <Compile Include="B_Perfil.cs" />

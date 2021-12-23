@@ -104,6 +104,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         B_TablaMaestra objB_TablaMaestra = new B_TablaMaestra();
         B_PM objBPM = new B_PM();
         B_OT objB_OT = new B_OT();
+        B_OTArticulo objB_OTArticulo = new B_OTArticulo();
         B_OTIProv objB_OTIProv = new B_OTIProv();
 
         DataTable tblNroSeriesAsignadas = new DataTable();
@@ -3609,7 +3610,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                         GlobalClass.ip.Mensaje(rpta.Tables[0].Rows[0]["ERR_MESSAGE"].ToString(), 2);
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -5670,6 +5670,42 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                         return;
                     }
 
+
+                    //ENVIAR CORREO A USUARIOS ALMACEN
+                    string cuerpoEmail = "";
+                    bool prueba, exito;
+                    cuerpoEmail = objB_OTArticulo.BodyEmail(objE_OT);
+                    prueba = true;
+                    exito = false;
+                    if(prueba)
+                    {
+                        if (Utilitarios.Utilitarios.EnviarCorreo("emcdm080693@gmail.com", "dreyna@vsperu.com", "OT: " + objE_OT.CodOT + " - REPUESTOS NO UTILIZADOS", cuerpoEmail, 1, true))
+                        {
+                            exito = true;
+                        }
+                    }
+                    else
+                    {
+                        List<InterfazMTTO.iSBO_BE.BEOUSR> ListaUsuarioDepartment;
+                        ListaUsuarioDepartment = InterfazMTTO.iSBO_BL.Usuario_BL.ListarUsuariosDepartment(-2, ref RPTA);
+                        if (RPTA.ResultadoRetorno == 0)
+                        {
+                            DataTable dtUsuarios = null;
+                            dtUsuarios = Utilitarios.Utilitarios.ToDataTable(ListaUsuarioDepartment);
+                            for (int i = 0; i < dtUsuarios.Rows.Count; i++)
+                            {
+                                if (Utilitarios.Utilitarios.EnviarCorreo(dtUsuarios.Rows[i]["Correo"].ToString(), "dreyna@vsperu.com", "OT: " + objE_OT.CodOT + " - REPUESTOS NO UTILIZADOS", cuerpoEmail, 1, false))
+                                {
+                                    exito = true;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if(!exito)
+                    {
+                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaOT, "ENVIO_CORREO"), 3);
+                    }
                 }
             }
             catch (Exception ex)

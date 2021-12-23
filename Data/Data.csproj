@@ -78,6 +78,7 @@
     <Compile Include="D_Neumatico_ControlDet.cs" />
     <Compile Include="D_Neumatico_Transfer.cs" />
     <Compile Include="D_OT.cs" />
+    <Compile Include="D_OTArticulo.cs" />
     <Compile Include="D_OTComp.cs" />
     <Compile Include="D_OTIProv.cs" />
     <Compile Include="D_Perfil.cs" />
