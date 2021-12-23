@@ -7,7 +7,7 @@ using Data;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Reflection;
-using System.Web.Mail;
+using System.Net.Mail;
 
 namespace Utilitarios
 {
@@ -433,34 +433,39 @@ namespace Utilitarios
             Year
         }
 
-        public static bool EnviarCorreo(string To, string Cc, string asunto, string cuerpo, int tipo, bool Prueba)
+        public static bool EnviarCorreo(string To, string Cc, string asunto, string cuerpo, bool Prueba)
         {
             try
             {
                 if (asunto.Trim().Length > 0)
                 {
                     MailMessage mail = new MailMessage();
-                    if (tipo == 1)
-                        mail.BodyFormat = MailFormat.Html;
-                    else
-                        mail.BodyFormat = MailFormat.Text;
 
-                    mail.From = "daniel08_re93@hotmail.com";
-                    mail.To = To;
-                    mail.Cc = Cc;
-                    mail.Bcc = "marlon1428@gmail.com";
+                    mail.Subject = asunto;
+                    mail.SubjectEncoding = System.Text.Encoding.UTF8;                 
+                    mail.From = new MailAddress("dreyna@vsperu.com", "Equipo de Logística", System.Text.Encoding.UTF8);
 
                     if (Prueba)
                     {
-                        mail.To = "emcdm080693@gmail.com";
-                        mail.Cc = "marlon1428@gmail.com" ;
-                        mail.Bcc = "";
+                        mail.To.Add(new MailAddress("emcdm080693@gmail.com"));
+                        mail.CC.Add(new MailAddress("marlon1428@gmail.com"));
                     }
-
-                    mail.Subject = asunto;
+                    else
+                    {
+                        mail.To.Add(new MailAddress(To));
+                        mail.CC.Add(new MailAddress(Cc));
+                    }
                     mail.Body = cuerpo;
-                    SmtpMail.SmtpServer = "smtp.office365.com";
-                    SmtpMail.Send(mail);
+                    mail.BodyEncoding = System.Text.Encoding.UTF8;
+                    mail.IsBodyHtml = true;
+
+                    SmtpClient client = new SmtpClient();
+
+                    client.Credentials = new System.Net.NetworkCredential("dreyna@vsperu.com", "Daniel08re93@");
+                    client.Host = "smtp.gmail.com";
+                    client.Port = 587;
+                    client.EnableSsl = true;
+                    client.Send(mail);
                 }
                 return true;
             }

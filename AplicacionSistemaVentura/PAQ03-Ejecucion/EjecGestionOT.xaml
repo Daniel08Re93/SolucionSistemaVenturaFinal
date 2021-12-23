@@ -439,6 +439,7 @@
                     <Button Style="{DynamicResource buttonStyle}" IsDefault="True" Content="Registrar" Margin="10,0,0,30" VerticalAlignment="Bottom" Width="100" Name="btnRegistrarOTTarea" Click="btnRegistrarOTTarea_Click" HorizontalAlignment="Left"/>
                     <Button Style="{DynamicResource buttonStyle}" Content="Cancelar" Margin="120,465,0,30" VerticalAlignment="Bottom" Width="100" Name="CancelarOTTarea" Click="CancelarOTTarea_Click" HorizontalAlignment="Left"/>
                     <Button Style="{DynamicResource buttonStyle}" Content="Cerrar OT" Margin="230,465,0,30" VerticalAlignment="Bottom" Width="100" Name="ActualizarEstadoOTTarea" Click="ActualizarEstadoOTTarea_Click" HorizontalAlignment="Left"/>
+                    <Button Style="{DynamicResource buttonStyle}" Content="Alternativo Cerrar OT" Margin="230,465,0,30" VerticalAlignment="Bottom" Width="100" Name="ActualizarEstadoOTTareaVer1" HorizontalAlignment="Left" Click="ActualizarEstadoOTTareaVer1_Click"/>
 
                     <dxg:TreeListControl Name="trlComponente" Margin="10,103,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="325" Width="491" SelectedItemChanged="trlComponente_SelectedItemChanged">
                         <dxg:TreeListControl.Columns>

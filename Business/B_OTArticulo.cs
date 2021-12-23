@@ -17,6 +17,9 @@ namespace Business
             return D_OTArticulo.BodyEmail(E_OT);
         }
 
-       
+        public string SubjectEmail(E_OT E_OT)
+        {
+            return D_OTArticulo.SubjectEmail(E_OT);
+        }
     }
 }

@@ -5672,14 +5672,16 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
 
                     //ENVIAR CORREO A USUARIOS ALMACEN
-                    string cuerpoEmail = "";
+                    string cuerpoEmail = "", asuntoEmail = "";
                     bool prueba, exito;
                     cuerpoEmail = objB_OTArticulo.BodyEmail(objE_OT);
+                    asuntoEmail = "OT: " + objB_OTArticulo.SubjectEmail(objE_OT) + " - REPUESTOS NO UTILIZADOS";
                     prueba = true;
                     exito = false;
-                    if(prueba)
+
+                    if (prueba)
                     {
-                        if (Utilitarios.Utilitarios.EnviarCorreo("emcdm080693@gmail.com", "dreyna@vsperu.com", "OT: " + objE_OT.CodOT + " - REPUESTOS NO UTILIZADOS", cuerpoEmail, 1, true))
+                        if (Utilitarios.Utilitarios.EnviarCorreo("emcdm080693@gmail.com", "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, prueba))
                         {
                             exito = true;
                         }
@@ -5694,7 +5696,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                             dtUsuarios = Utilitarios.Utilitarios.ToDataTable(ListaUsuarioDepartment);
                             for (int i = 0; i < dtUsuarios.Rows.Count; i++)
                             {
-                                if (Utilitarios.Utilitarios.EnviarCorreo(dtUsuarios.Rows[i]["Correo"].ToString(), "dreyna@vsperu.com", "OT: " + objE_OT.CodOT + " - REPUESTOS NO UTILIZADOS", cuerpoEmail, 1, false))
+                                if (Utilitarios.Utilitarios.EnviarCorreo(dtUsuarios.Rows[i]["Correo"].ToString(), "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, false))
                                 {
                                     exito = true;
                                 }
@@ -7350,6 +7352,54 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             {
                 Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
                 GlobalClass.ip.Mensaje(ex.Message, 3);
+            }
+        }
+
+        private void ActualizarEstadoOTTareaVer1_Click(object sender, RoutedEventArgs e)
+        {
+            objE_OT = new E_OT();
+            objE_OT.IdOT = IdOT;
+            objE_OT.IdEstadoOT = 5;
+            objE_OT.FechaCierre = Convert.ToDateTime(dtpFechaCierreT.EditValue);
+            objE_OT.IdUsuarioModificacion = Utilitarios.Utilitarios.gintIdUsuario;
+            objE_OT.IsRegProveedor = 0;
+            objE_OT.FechaModificacion = DateTime.Now;
+
+            //ENVIAR CORREO A USUARIOS ALMACEN
+            string cuerpoEmail = "", asuntoEmail = "";
+            bool prueba, exito;
+            cuerpoEmail = objB_OTArticulo.BodyEmail(objE_OT);
+            asuntoEmail = "OT: " + objB_OTArticulo.SubjectEmail(objE_OT) + " - REPUESTOS NO UTILIZADOS";
+            prueba = true;
+            exito = false;
+            if (prueba)
+            {
+                if (Utilitarios.Utilitarios.EnviarCorreo("emcdm080693@gmail.com", "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, prueba))
+                {
+                    exito = true;
+                }
+            }
+            else
+            {
+                List<InterfazMTTO.iSBO_BE.BEOUSR> ListaUsuarioDepartment;
+                ListaUsuarioDepartment = InterfazMTTO.iSBO_BL.Usuario_BL.ListarUsuariosDepartment(-2, ref RPTA);
+                if (RPTA.ResultadoRetorno == 0)
+                {
+                    DataTable dtUsuarios = null;
+                    dtUsuarios = Utilitarios.Utilitarios.ToDataTable(ListaUsuarioDepartment);
+                    for (int i = 0; i < dtUsuarios.Rows.Count; i++)
+                    {
+                        if (Utilitarios.Utilitarios.EnviarCorreo(dtUsuarios.Rows[i]["Correo"].ToString(), "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, false))
+                        {
+                            exito = true;
+                        }
+                    }
+                }
+            }
+
+            if (!exito)
+            {
+                GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaOT, "ENVIO_CORREO"), 3);
             }
         }
 
