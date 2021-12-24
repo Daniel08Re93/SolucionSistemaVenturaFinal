@@ -1,26 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Bars;
-using DevExpress.Xpf.Layout.Core;
 using DevExpress.Xpf.Docking;
-using DevExpress.Xpf.NavBar;
-using DevExpress.Xpf.Grid;
-using DevExpress.Xpf.Printing;
-using DevExpress.Mvvm.UI;
 using System.Configuration;
-using System.Configuration.Assemblies;
 using System.Data;
 using Utilitarios;
 using Business;
@@ -28,12 +16,8 @@ using Entities;
 using System.Threading;
 using System.Windows.Threading;
 using System.Data.SqlClient;
-using System.Security.Cryptography;
-using System.Runtime.InteropServices;
 using System.IO;
 using System.ComponentModel;
-using DevExpress.XtraEditors;
-using DevExpress.Xpf.Core.Native;
 
 namespace AplicacionSistemaVentura
 {

@@ -120,6 +120,7 @@
                     <Button Style="{DynamicResource buttonStyle}" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Click="BtnRegistrarOT_Click" Content="Registrar" Name="BtnRegistrarOT" Width="120"/>
                     <Button Style="{DynamicResource buttonStyle}" HorizontalAlignment="Left" Margin="140,0,0,10" VerticalAlignment="Bottom" Click="BtnRegistrarTarea_Click" Content="Registro de Tareas" Name="BtnRegistrarTarea" Width="120"/>
                     <Button Style="{DynamicResource buttonStyle}" HorizontalAlignment="Left" Margin="270,0,0,10" VerticalAlignment="Bottom" Click="BtnRegistrarInforme_Click" Content="Registro de Informe" Name="BtnRegistrarInforme" Grid.ColumnSpan="2" Width="120" />
+                    <Button Style="{DynamicResource buttonStyle}" Margin="61.6,0,469.6,10.2" VerticalAlignment="Bottom" Click="btnImprimirOT_Click" Content="Imprimir" Name="btnImprimirOT" Grid.Column="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Creación de OT" Name="tabDetallesOT">
@@ -127,7 +128,7 @@
                     <Button Style="{DynamicResource buttonStyle}" Margin="10,0,0,25" Content="Registrar" IsDefault="True" Width="100" Height="28" HorizontalAlignment="Left" Name="BtnGrabarOT" Click="BtnGrabarOT_Click" VerticalAlignment="Bottom" />
                     <Button Style="{DynamicResource buttonStyle}" Margin="120,0,0,25" Content="Cancelar"  Width="100" Height="28" HorizontalAlignment="Left" VerticalAlignment="Bottom" Name="btnCancelarOT" Click="btnCancelarOT_Click"/>
                     <Button Style="{DynamicResource buttonStyle}" Margin="230,0,0,25" HorizontalAlignment="Left" VerticalAlignment="Bottom" Content="Imprimir" Name="btnImprimir"  Click="btnImprimir_Click"/>
-                    
+
                     <TabControl Margin="10,10,10,77" Name="tabControl5" Height="452">
                         <TabItem Header="OT Cabecera" Name="tabItem15">
                             <Grid>
@@ -541,7 +542,7 @@
                             <Label Content="R.U.C:" HorizontalAlignment="Left" Margin="10,38,0,0" Name="label44" VerticalAlignment="Top" />
                             <Label Content="" HorizontalAlignment="Left" Margin="118,38,0,0" Name="lblRIRuc" VerticalAlignment="Top" Foreground="#FF090986" />
                             <Label Content="O/S:" HorizontalAlignment="Left" Margin="374,40,0,0" Name="label48" VerticalAlignment="Top" />
-                            
+
                             <dxg:LookUpEdit Name="cboRIORdenCompra" DisplayMember="NroOrden" ValueMember="CostoTotal" AutoPopulateColumns="False" AutoComplete="True" IncrementalFiltering="True" ImmediatePopup="True" IsPopupAutoWidth="False" HorizontalAlignment="Left" VerticalAlignment="Top" Width="89" Margin="411,38,0,0" SelectedIndexChanged="cboRIORdenCompra_SelectedIndexChanged">
                                 <dxg:LookUpEdit.PopupContentTemplate>
                                     <ControlTemplate>
@@ -564,7 +565,7 @@
                             <Label Content="" Foreground="#FF090986" HorizontalAlignment="Left" Margin="118,72,0,0" Name="lblRICosto" VerticalAlignment="Top" />
                             <Label Content="Documento:" HorizontalAlignment="Left" Margin="10,106,0,0" Name="label40" VerticalAlignment="Top" />
                             <!--<TextBox Height="23" IsReadOnly="True" HorizontalAlignment="Left" Margin="118,104,0,0" Name="lblRIUbicacion" VerticalAlignment="Top" Width="276"/>-->
-                            
+
                             <TextBlock Visibility="Collapsed" Name="txbLinkCarga" Margin="118,104,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="315">
                                 <Label Name="lblRIUbicacion" Content="" />
                             </TextBlock>
@@ -848,10 +849,10 @@
                             <Button Style="{DynamicResource buttonStyle}" Height="28" HorizontalAlignment="Left" Margin="313,119,0,0" VerticalAlignment="Top" Width="100" Content="Cancelar" Name="btnCancelarArticuloTarea" Click="btnCancelarArticuloTarea_Click"/>
                             <Label Content="Nro. de Serie:" HorizontalAlignment="Left" Margin="28,72,0,0" Name="lblNroSerie" VerticalAlignment="Top" Width="89" />
                             <dxe:TextEdit Style="{DynamicResource FormatoNroSeries}" Height="23" HorizontalAlignment="Left" Margin="150,67,0,0" Name="txtNroSerie" VerticalAlignment="Top" Width="120" EditValueChanged="txtNroSerie_EditValueChanged"/>
-                            
+
                             <Label Content="Frecuencia Kilometros:" HorizontalAlignment="Left" Margin="28,100,0,0" Name="lblFrecuencia" VerticalAlignment="Top" />
                             <dxe:TextEdit Style="{DynamicResource FormatoDecimal}" Width="80" Name="txtFrecuencia" Height="24" Margin="150,96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" EditValueChanged="txtFrecuencia_EditValueChanged"/>
-                            
+
                             <Label Content="Frecuencia Tiempo:" HorizontalAlignment="Left" Margin="28,130,0,0" Name="lblFrecuenciaTm" VerticalAlignment="Top" />
                             <dxe:TextEdit Style="{DynamicResource FormatoDecimal}" Width="80" Name="txtFrecuenciaTm" Height="24" Margin="150,126,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" EditValueChanged="txtFrecuenciaTm_EditValueChanged"/>
 
@@ -892,7 +893,7 @@
                 </StackPanel>
             </Border>
         </Grid>
-        
+
         <Grid Name="stkTrabajadorTarea" Visibility="Collapsed">
             <Grid Background="Black" Opacity="0.75"/>
             <Border x:Name="InputBorde9" MinWidth="300" Background="White"                

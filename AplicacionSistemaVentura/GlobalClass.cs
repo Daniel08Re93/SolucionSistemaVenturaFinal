@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Globalization;
 using DevExpress.Mvvm;
 using System.Windows.Data;
-using System.Windows.Media;
 using Utilitarios;
 using Business;
 using Entities;
-
 using System.Data;
 using System.IO;
 using System.Configuration;
@@ -17,12 +13,8 @@ using System.Windows;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using System.Data.SqlClient;
-using DevExpress.Xpf.Docking;
-
 using System.Security.Cryptography;
-
 using System.Windows.Controls;
-
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
@@ -271,9 +263,10 @@ namespace AplicacionSistemaVentura
 
         public static void ImprimirCR(string Ruta, string Param, Window XAML)
         {
+
+            ErrorHandler Error = new ErrorHandler();
             try
             {
-
                 ReportDocument cryRpt = new ReportDocument();
                 ParameterField param1 = new ParameterField();
                 ParameterDiscreteValue discreteValue1 = new ParameterDiscreteValue();
@@ -281,6 +274,7 @@ namespace AplicacionSistemaVentura
                 B_Conexion b_Conexion = new B_Conexion();
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["BDVentura"].ToString());
 
+                
                 param1 = new ParameterField();
                 param1.ParameterFieldName = "Param";
 
@@ -297,9 +291,11 @@ namespace AplicacionSistemaVentura
                 CRViewer.ShowDialog();
             }
 
-
-            catch
-            { }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
 
         }
 

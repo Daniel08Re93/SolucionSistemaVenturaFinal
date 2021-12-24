@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using DevExpress.Xpf.Editors.Settings;
-using DevExpress.Xpf;
 using System.Data;
-using DevExpress.XtraEditors;
 using Business;
 using Entities;
 using Utilitarios;
 using System.Text.RegularExpressions;
 using DevExpress.Xpf.Grid;
+using Utilitarios.Constantes;
+using Utilitarios.Enum;
+
 namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 {
     public partial class EjecGestionOT : UserControl
@@ -224,6 +217,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             try
             {
+                btnImprimirOT.Visibility = Visibility.Hidden;
                 GlobalClass.ControlSubMenu(this.GetType().Name, gridTabLista);
                 dtgCambioEstado.AutoGenerateColumns = DevExpress.Xpf.Grid.AutoGenerateColumnsMode.None;
                 dtgPostergacion.AutoGenerateColumns = DevExpress.Xpf.Grid.AutoGenerateColumnsMode.None;
@@ -685,7 +679,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 //bool VisualizaBotonImprimirDetalle = GlobalClass.ExisteFormatoImpresion(this.GetType().Name, ref gintIdMenu);
                 //if (!VisualizaBotonImprimirDetalle)
                 //{
-                    btnImprimir.Visibility = System.Windows.Visibility.Hidden;
+                    btnImprimir.Visibility = Visibility.Hidden;
                 //}
                 //#endregion
 
@@ -7403,10 +7397,51 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             }
         }
 
+        private void btnImprimirOT_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dtgOT.VisibleRowCount == 0) { return; }
+                var otId = Convert.ToInt32(dtgOT.GetCellDisplayText(tblvOT.FocusedRowHandle, "IdOT"));
+                
+                GlobalClass.GeneraImpresion((int)MenuEnum.OrdenTrabajo, otId);
+
+            }
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        private void dtgOT_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (dtgOT.VisibleRowCount == 0) { return; }
+                int IdEstadoOT = Convert.ToInt32(dtgOT.GetFocusedRowCellValue("IdEstadoOT"));
+
+                if (IdEstadoOT == 4 || IdEstadoOT == 5)
+                {
+                    btnImprimirOT.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    btnImprimirOT.Visibility = Visibility.Hidden;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+            }
+        }
+
         private void btnImprimir_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+            
                 GlobalClass.GeneraImpresion(gintIdMenu, gintIdOT);
             }
             catch { }
