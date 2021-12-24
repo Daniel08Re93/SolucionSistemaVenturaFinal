@@ -62,7 +62,7 @@
                         </Grid>
                     </GroupBox>
                     <dxg:GridControl AutoGenerateColumns="None" EnableSmartColumnsGeneration="True" Height="393"  Margin="8,53,3,0"
-                            Name="dtgOT" VerticalAlignment="Top" Grid.ColumnSpan="2" MouseDoubleClick="dtgOT_MouseDoubleClick" SelectionChanged="dtgOT_SelectionChanged">
+                            Name="dtgOT" VerticalAlignment="Top" Grid.ColumnSpan="2" MouseDoubleClick="dtgOT_MouseDoubleClick" SelectionChanged="dtgOT_SelectionChanged" GotFocus="dtgOT_GotFocus">
                         <dxg:GridControl.Columns>
                             <dxg:GridColumn FieldName=" " VisibleIndex="0" Width="50">
                                 <dxg:GridColumn.EditSettings>
