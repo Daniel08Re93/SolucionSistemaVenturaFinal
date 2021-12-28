@@ -419,7 +419,7 @@ namespace AplicacionSistemaVentura
                 cryRpt.Load(Ruta);
                 cryRpt.SetDatabaseLogon(builder.UserID, builder.Password, builder.DataSource, builder.InitialCatalog);
 
-                CRViewer CRViewer = new CRViewer(cryRpt, paramFiels1);
+                CRViewer2 CRViewer = new CRViewer2(cryRpt, paramFiels1);
                 CRViewer.Owner = XAML;
                 CRViewer.ShowDialog();
             }

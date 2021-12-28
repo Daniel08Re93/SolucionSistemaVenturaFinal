@@ -22,18 +22,6 @@ namespace AplicacionSistemaVentura
 
         private void DXWindow_Loaded()
         {
-
-            for (int i = 0; i < PFields.Count; i++)
-            {
-                CRPrint.SetParameterValue(i, PFields[i].CurrentValues);
-            }
-
-            crystalReportsViewer1.ViewerCore.ReportSource = CRPrint;
-
-            /*
-             * 
-             * Comentado por que se encontro una forma mejor y con menos codigo
-             * 
             ParameterFieldDefinitions crParameterFieldDefinitions;
             ParameterFieldDefinition crParameterFieldDefinition;
             ParameterValues crParameterValues = new ParameterValues();
@@ -46,8 +34,6 @@ namespace AplicacionSistemaVentura
             crParameterFieldDefinition.ApplyCurrentValues(PFields[0].CurrentValues);
                        
             crystalReportsViewer1.ViewerCore.ReportSource = CRPrint;      
-            */
-
         }
     }
 }
