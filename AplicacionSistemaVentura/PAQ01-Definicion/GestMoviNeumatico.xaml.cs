@@ -1158,6 +1158,16 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                 lstMovi.Items.Clear();
                 CargarListSeries();
                 gtblNeumaticoTransferDet.Rows.Clear();
+
+                //IMPRIMIR AL GUARDAR
+                int UC = 0;
+                UC = Convert.ToInt32(cboUCOrigen.EditValue);
+                if (UC > 0)
+                {
+                    GlobalClass.GeneraImpresion(gintIdMenu, UC);
+                }
+                //IMPRIMIR AL GUARDAR
+
                 cboUCOrigen.SelectedIndex = -1;
                 cboUCDestino.SelectedIndex = -1;
                 DeshabilitarImagenes("D");
@@ -2244,8 +2254,15 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
         {
             try
             {
-                int IdNeumaticoTransfer = 0;
-                GlobalClass.GeneraImpresion(gintIdMenu, IdNeumaticoTransfer);
+                //int IdNeumaticoTransfer = 0;
+                //GlobalClass.GeneraImpresion(gintIdMenu, IdNeumaticoTransfer);
+
+                int UC = 0;
+                UC = Convert.ToInt32(cboUCOrigen.EditValue);
+                if (UC > 0)
+                {
+                    GlobalClass.GeneraImpresion(gintIdMenu, UC);
+                }
             }
             catch { }
         }
