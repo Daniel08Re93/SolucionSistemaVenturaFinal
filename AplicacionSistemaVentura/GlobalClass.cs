@@ -360,6 +360,76 @@ namespace AplicacionSistemaVentura
                     (btn as FrameworkElement).IsEnabled = false;
             }
         }
+
+        public static void GeneraImpresionOT(int IdMenu, int pParam)
+        {
+            Window XAML = GlobalClass.ip;
+            string Ruta = string.Empty;
+            ErrorHandler Error = new ErrorHandler();
+            string Param = Convert.ToString(pParam);
+
+            try
+            {
+                DataTable FormatosImpresion = GetFormatoImpresion(IdMenu);
+
+                if (FormatosImpresion.Rows.Count == 0)
+                {
+                    GlobalClass.ip.Mensaje("No existen formatos de impresión disponibles", 3);
+                }
+                else if (FormatosImpresion.Rows.Count == 1)
+                {
+                    DataTable tblFile = B_FormatoImpresion.FormatoImpresion_GetFile(Convert.ToInt32(FormatosImpresion.Rows[0]["Id_FormatoImpresion"].ToString()));
+                    Ruta = GrabaFormatoImpresion(tblFile);
+                    ImprimirCROT(Ruta, Param, XAML);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
+
+        public static void ImprimirCROT(string Ruta, string Param, Window XAML)
+        {
+
+            ErrorHandler Error = new ErrorHandler();
+            try
+            {
+                ReportDocument cryRpt = new ReportDocument();
+                ParameterField param1 = new ParameterField();
+                ParameterDiscreteValue discreteValue1 = new ParameterDiscreteValue();
+                ParameterFields paramFiels1 = new ParameterFields();
+                B_Conexion b_Conexion = new B_Conexion();
+                SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["BDVentura"].ToString());
+
+                param1 = new ParameterField();
+                param1.ParameterFieldName = "Param";
+
+                discreteValue1.Value = Param;
+                param1.CurrentValues.Add(discreteValue1);
+                paramFiels1.Add(param1);
+                param1.CurrentValues.Add(discreteValue1);
+                paramFiels1.Add(param1);
+                param1.CurrentValues.Add(discreteValue1);
+                paramFiels1.Add(param1);
+
+                cryRpt.Load(Ruta);
+                cryRpt.SetDatabaseLogon(builder.UserID, builder.Password, builder.DataSource, builder.InitialCatalog);
+
+                CRViewer CRViewer = new CRViewer(cryRpt, paramFiels1);
+                CRViewer.Owner = XAML;
+                CRViewer.ShowDialog();
+            }
+
+            catch (Exception ex)
+            {
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+            }
+        }
     }
 
     public class GifImage : Image
@@ -461,5 +531,8 @@ namespace AplicacionSistemaVentura
         {
             BeginAnimation(FrameIndexProperty, null);
         }
+
+
+
     }
 }

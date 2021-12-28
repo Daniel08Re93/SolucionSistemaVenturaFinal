@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using DevExpress.Xpf.Core;
+﻿using DevExpress.Xpf.Core;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
-
 
 namespace AplicacionSistemaVentura
 {
@@ -35,6 +22,18 @@ namespace AplicacionSistemaVentura
 
         private void DXWindow_Loaded()
         {
+
+            for (int i = 0; i < PFields.Count; i++)
+            {
+                CRPrint.SetParameterValue(i, PFields[i].CurrentValues);
+            }
+
+            crystalReportsViewer1.ViewerCore.ReportSource = CRPrint;
+
+            /*
+             * 
+             * Comentado por que se encontro una forma mejor y con menos codigo
+             * 
             ParameterFieldDefinitions crParameterFieldDefinitions;
             ParameterFieldDefinition crParameterFieldDefinition;
             ParameterValues crParameterValues = new ParameterValues();
@@ -46,8 +45,9 @@ namespace AplicacionSistemaVentura
             crParameterValues.Clear();            
             crParameterFieldDefinition.ApplyCurrentValues(PFields[0].CurrentValues);
                        
-            crystalReportsViewer1.ViewerCore.ReportSource = CRPrint;            
-            
+            crystalReportsViewer1.ViewerCore.ReportSource = CRPrint;      
+            */
+
         }
     }
 }

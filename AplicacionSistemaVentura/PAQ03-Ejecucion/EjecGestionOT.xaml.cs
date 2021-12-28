@@ -7404,8 +7404,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 if (dtgOT.VisibleRowCount == 0) { return; }
                 var otId = Convert.ToInt32(dtgOT.GetCellDisplayText(tblvOT.FocusedRowHandle, "IdOT"));
                 
-                GlobalClass.GeneraImpresion((int)MenuEnum.OrdenTrabajo, otId);
-
+                GlobalClass.GeneraImpresionOT((int)MenuEnum.OrdenTrabajo, otId);
             }
             catch (Exception ex)
             {
