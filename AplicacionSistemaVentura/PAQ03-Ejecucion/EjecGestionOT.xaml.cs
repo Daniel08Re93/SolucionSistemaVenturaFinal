@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 using DevExpress.Xpf.Grid;
 using Utilitarios.Constantes;
 using Utilitarios.Enum;
+using System.Net.Mail;
 
 namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 {
@@ -149,6 +150,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         int IdPerfilCompMax = 0;
         string gstrNroSerieSelec = "";
         int gintIdMenu = 0, gintIdOT = 0;
+        string correodest;
         #endregion
         void OnFocus(object sender, RoutedEventArgs e)
         {
@@ -5665,43 +5667,79 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     }
 
 
-                    //ENVIAR CORREO A USUARIOS ALMACEN
+                    # region ENVIAR_CORREO_USUARIOS_ALMACEN
                     string cuerpoEmail = "", asuntoEmail = "";
-                    bool prueba, exito;
+                    objE_OT = new E_OT();
+                    objE_OT.IdOT = IdOT;
                     cuerpoEmail = objB_OTArticulo.BodyEmail(objE_OT);
                     asuntoEmail = "OT: " + objB_OTArticulo.SubjectEmail(objE_OT) + " - REPUESTOS NO UTILIZADOS";
-                    prueba = true;
-                    exito = false;
 
-                    if (prueba)
+                    DataTable tlbcorreo = new DataTable();
+                    B_Correo objco = new B_Correo();
+                    string usuario;
+                    string servidor;
+                    string password;
+                    string puerto;
+                    int Ltbl;
+
+                    tlbcorreo = objco.Correo_List(); //Tabla de configuración del correo emisor
+
+                    if (tlbcorreo.Rows.Count > 0)
                     {
-                        if (Utilitarios.Utilitarios.EnviarCorreo("emcdm080693@gmail.com", "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, prueba))
-                        {
-                            exito = true;
-                        }
-                    }
-                    else
-                    {
+                        usuario = tlbcorreo.Rows[0]["Correo"].ToString();
+                        servidor = tlbcorreo.Rows[0]["Srv"].ToString();
+                        password = tlbcorreo.Rows[0]["Pwd"].ToString();
+                        puerto = tlbcorreo.Rows[0]["Puerto"].ToString();
+
+                        B_Usuario objcor = new B_Usuario();
+                        DataTable tlvcor = new DataTable(); //Listado de usuarios con el flag de gerencia operativa 
                         List<InterfazMTTO.iSBO_BE.BEOUSR> ListaUsuarioDepartment;
-                        ListaUsuarioDepartment = InterfazMTTO.iSBO_BL.Usuario_BL.ListarUsuariosDepartment(-2, ref RPTA);
+                        ListaUsuarioDepartment = InterfazMTTO.iSBO_BL.Usuario_BL.ListarUsuariosDepartment(13, ref RPTA);
+                        string correos = "";
+
                         if (RPTA.ResultadoRetorno == 0)
                         {
-                            DataTable dtUsuarios = null;
-                            dtUsuarios = Utilitarios.Utilitarios.ToDataTable(ListaUsuarioDepartment);
-                            for (int i = 0; i < dtUsuarios.Rows.Count; i++)
+                            tlvcor = Utilitarios.Utilitarios.ToDataTable(ListaUsuarioDepartment);
+                            Ltbl = tlvcor.Rows.Count;
+
+                            if (Ltbl > 0)
                             {
-                                if (Utilitarios.Utilitarios.EnviarCorreo(dtUsuarios.Rows[i]["Correo"].ToString(), "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, false))
+                                for (int i = 0; i < Ltbl; i++)
                                 {
-                                    exito = true;
+                                    if (tlvcor.Rows[i]["Correo"].ToString().Contains("@"))
+                                    {
+                                        correodest = tlvcor.Rows[i]["Correo"].ToString();
+
+                                        if (i != Ltbl - 1)
+                                        {
+                                            correos = correos + correodest + ";";
+                                        }
+                                        else
+                                        {
+                                            correos = correos + correodest;
+                                        }
+                                    }
                                 }
+
+                                char[] delimitador = new char[] { ';' };
+                                MailMessage message = new MailMessage();
+                                foreach (string destinos in correos.Split(delimitador))
+                                {
+                                    message.To.Add(new MailAddress(destinos));
+                                }
+
+                                message.From = new MailAddress(usuario);
+                                message.Body = cuerpoEmail;
+                                message.Subject = asuntoEmail;
+                                message.IsBodyHtml = true;
+                                SmtpClient client = new SmtpClient(servidor, int.Parse(puerto));
+                                client.EnableSsl = true;
+                                client.Credentials = new System.Net.NetworkCredential(usuario, password);
+                                client.Send(message);
                             }
                         }
                     }
-                    
-                    if(!exito)
-                    {
-                        GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaOT, "ENVIO_CORREO"), 3);
-                    }
+                    #endregion
                 }
             }
             catch (Exception ex)
@@ -7346,54 +7384,6 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             {
                 Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
                 GlobalClass.ip.Mensaje(ex.Message, 3);
-            }
-        }
-
-        private void ActualizarEstadoOTTareaVer1_Click(object sender, RoutedEventArgs e)
-        {
-            objE_OT = new E_OT();
-            objE_OT.IdOT = IdOT;
-            objE_OT.IdEstadoOT = 5;
-            objE_OT.FechaCierre = Convert.ToDateTime(dtpFechaCierreT.EditValue);
-            objE_OT.IdUsuarioModificacion = Utilitarios.Utilitarios.gintIdUsuario;
-            objE_OT.IsRegProveedor = 0;
-            objE_OT.FechaModificacion = DateTime.Now;
-
-            //ENVIAR CORREO A USUARIOS ALMACEN
-            string cuerpoEmail = "", asuntoEmail = "";
-            bool prueba, exito;
-            cuerpoEmail = objB_OTArticulo.BodyEmail(objE_OT);
-            asuntoEmail = "OT: " + objB_OTArticulo.SubjectEmail(objE_OT) + " - REPUESTOS NO UTILIZADOS";
-            prueba = true;
-            exito = false;
-            if (prueba)
-            {
-                if (Utilitarios.Utilitarios.EnviarCorreo("emcdm080693@gmail.com", "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, prueba))
-                {
-                    exito = true;
-                }
-            }
-            else
-            {
-                List<InterfazMTTO.iSBO_BE.BEOUSR> ListaUsuarioDepartment;
-                ListaUsuarioDepartment = InterfazMTTO.iSBO_BL.Usuario_BL.ListarUsuariosDepartment(-2, ref RPTA);
-                if (RPTA.ResultadoRetorno == 0)
-                {
-                    DataTable dtUsuarios = null;
-                    dtUsuarios = Utilitarios.Utilitarios.ToDataTable(ListaUsuarioDepartment);
-                    for (int i = 0; i < dtUsuarios.Rows.Count; i++)
-                    {
-                        if (Utilitarios.Utilitarios.EnviarCorreo(dtUsuarios.Rows[i]["Correo"].ToString(), "dreyna@vsperu.com", asuntoEmail, cuerpoEmail, false))
-                        {
-                            exito = true;
-                        }
-                    }
-                }
-            }
-
-            if (!exito)
-            {
-                GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaOT, "ENVIO_CORREO"), 3);
             }
         }
 

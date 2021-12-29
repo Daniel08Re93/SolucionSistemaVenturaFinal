@@ -63,6 +63,7 @@
     <Compile Include="B_Ciclo.cs" />
     <Compile Include="B_Conexion.cs" />
     <Compile Include="B_ContadorDet.cs" />
+    <Compile Include="B_Correo.cs" />
     <Compile Include="B_Empresa.cs" />
     <Compile Include="B_FormatoImpresion.cs" />
     <Compile Include="B_Herramienta.cs" />

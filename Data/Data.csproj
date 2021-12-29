@@ -65,6 +65,7 @@
     <Compile Include="D_CargaMasiva.cs" />
     <Compile Include="D_Ciclo.cs" />
     <Compile Include="D_ContadorDet.cs" />
+    <Compile Include="D_Correo.cs" />
     <Compile Include="D_Empresa.cs" />
     <Compile Include="D_FormatoImpresion.cs" />
     <Compile Include="D_Herramienta.cs" />

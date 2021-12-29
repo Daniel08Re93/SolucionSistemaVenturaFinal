@@ -63,6 +63,7 @@
     <Compile Include="E_CargaMasiva.cs" />
     <Compile Include="E_Ciclo.cs" />
     <Compile Include="E_ContadorDet.cs" />
+    <Compile Include="E_Correo.cs" />
     <Compile Include="E_Empresa.cs" />
     <Compile Include="E_FormatoImpresion.cs" />
     <Compile Include="E_Herramienta.cs" />

@@ -432,49 +432,6 @@ namespace Utilitarios
             WeekOfYear,
             Year
         }
-
-        public static bool EnviarCorreo(string To, string Cc, string asunto, string cuerpo, bool Prueba)
-        {
-            try
-            {
-                if (asunto.Trim().Length > 0)
-                {
-                    MailMessage mail = new MailMessage();
-
-                    mail.Subject = asunto;
-                    mail.SubjectEncoding = System.Text.Encoding.UTF8;                 
-                    mail.From = new MailAddress("dreyna@vsperu.com", "Equipo de Logística", System.Text.Encoding.UTF8);
-
-                    if (Prueba)
-                    {
-                        mail.To.Add(new MailAddress("emcdm080693@gmail.com"));
-                        mail.CC.Add(new MailAddress("marlon1428@gmail.com"));
-                    }
-                    else
-                    {
-                        mail.To.Add(new MailAddress(To));
-                        mail.CC.Add(new MailAddress(Cc));
-                    }
-                    mail.Body = cuerpo;
-                    mail.BodyEncoding = System.Text.Encoding.UTF8;
-                    mail.IsBodyHtml = true;
-
-                    SmtpClient client = new SmtpClient();
-
-                    client.Credentials = new System.Net.NetworkCredential("dreyna@vsperu.com", "Daniel08re93@");
-                    client.Host = "smtp.gmail.com";
-                    client.Port = 587;
-                    client.EnableSsl = true;
-                    client.Send(mail);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
     }
 }
 
