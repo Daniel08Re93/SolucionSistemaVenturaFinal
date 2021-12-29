@@ -3423,6 +3423,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             try
             {
                 if (ValidaGrabacion() == false) { return; }
+                if (ValidaTipoCambio() == false) { return; }
                 gbolIsOTMod = false;
                 if (!gbolIsRegNroSeries)
                 {
@@ -6996,6 +6997,8 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 cant++;
 
             }
+
+            IdTipoOrden = Convert.ToInt32(CboOrden.EditValue);
             if (WTQ1List.Count > 0 && Convert.ToInt32(IdTipoOrden) != 2) //Revisar 
             {
                 //InterfazMTTO.iSBO_BE.BEWTQ1List WTQ1List = new InterfazMTTO.iSBO_BE.BEWTQ1List();
@@ -7434,6 +7437,32 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 GlobalClass.GeneraImpresion(gintIdMenu, gintIdOT);
             }
             catch { }
+        }
+
+        private bool ValidaTipoCambio()
+        {
+            bool val = true;
+
+            try
+            {
+                //Obtener Tipo de Cambio
+                RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
+                InterfazMTTO.iSBO_BE.BEORTT tipoCambio = null;
+                tipoCambio = InterfazMTTO.iSBO_BL.TipoCambio_BL.ObtenerTipoCambioPorFecha(DateTime.Now.AddDays(+1), ref RPTA);
+                if (RPTA.ResultadoRetorno != 0)
+                {
+                    GlobalClass.ip.Mensaje(RPTA.DescripcionErrorUsuario, 2);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                val = false;
+                return val;
+            }
+            return val;
         }
     }
 }
