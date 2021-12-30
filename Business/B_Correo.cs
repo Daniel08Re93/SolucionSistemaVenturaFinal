@@ -1,7 +1,4 @@
-﻿using System.Text;
-using System.Data;
-using System.Data.SqlClient;
-using Entities;
+﻿using System.Data;
 using Data;
 
 namespace Business

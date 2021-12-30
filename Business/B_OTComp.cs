@@ -1,8 +1,4 @@
-﻿using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
+﻿using System.Data;
 using Entities;
 using Data;
 

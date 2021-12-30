@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using Entities;
+﻿using System.Data;
 using Data;
 
 namespace Business

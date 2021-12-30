@@ -681,7 +681,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 //bool VisualizaBotonImprimirDetalle = GlobalClass.ExisteFormatoImpresion(this.GetType().Name, ref gintIdMenu);
                 //if (!VisualizaBotonImprimirDetalle)
                 //{
-                    btnImprimir.Visibility = Visibility.Hidden;
+                btnImprimir.Visibility = Visibility.Hidden;
                 //}
                 //#endregion
 
@@ -3424,6 +3424,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             {
                 if (ValidaGrabacion() == false) { return; }
                 if (ValidaTipoCambio() == false) { return; }
+                if (ValidaAlmacenArticulo(tblRepuesto, tblConsumible) == false) { return; }
                 gbolIsOTMod = false;
                 if (!gbolIsRegNroSeries)
                 {
@@ -4145,13 +4146,13 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 }
                 else
                 {
-                    
+
                     for (int i = 0; i < tbOTTareaTrabajador.Rows.Count; i++)
-                    {                        
-                        string Fechatabla = tbOTTareaTrabajador.Rows[i]["Fecha"].ToString();                        
-                        string Horaitabla = tbOTTareaTrabajador.Rows[i]["HoraInicial"].ToString();                        
+                    {
+                        string Fechatabla = tbOTTareaTrabajador.Rows[i]["Fecha"].ToString();
+                        string Horaitabla = tbOTTareaTrabajador.Rows[i]["HoraInicial"].ToString();
                         string Horaftabla = tbOTTareaTrabajador.Rows[i]["HoraFinal"].ToString();
-                        
+
                         if (cboTrabajador.Text == tbOTTareaTrabajador.Rows[i]["Trabajador"] && fecha == Fechatabla &&
                              horai == Horaitabla && horaf == Horaftabla)
                         {
@@ -4168,7 +4169,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                             row["FlagActivo"] = true;
                             row["Nuevo"] = true;
                         }
-                        
+
                         /*
                         if (tbOTTareaTrabajador.Rows[0]["Trabajador"] != cboTrabajador.Text)
                         {
@@ -4198,10 +4199,10 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                             //return;
                         }
                          * */
-                        
+
                     }
                 }
-    
+
                 tbOTTareaTrabajador.Rows.Add(row);
                 grvListarTrabajador.ItemsSource = tbOTTareaTrabajador.DefaultView;
 
@@ -4362,7 +4363,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 //    GlobalClass.ip.Mensaje("Seleccionar responsable", 2);
                 //    return;
                 //}
-                
+
                 if (!gbolIsFrecExten)
                 {
                     if (txtCantidadUtilizada.Text.Trim() == "" || Convert.ToInt32(txtCantidadUtilizada.Text) == 0)
@@ -5984,7 +5985,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 row["NroSolicitudTransferencia"] = 0;
                 //row["CostoArticulo"] = 0;
 
-                if(WTQ1List.Count == 0)
+                if (WTQ1List.Count == 0)
                 {
                     //Obtener Costo Articulo SAP
                     RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
@@ -6010,7 +6011,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                         }
                     }
                 }
-                
+
                 row["CantUti"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CantUti"]);
                 //row["CostoArticulo"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CostoArticulo"]);
                 row["Observacion"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["Observacion"]);
@@ -6997,7 +6998,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 cant++;
 
             }
-                
+
             IdTipoOrden = Convert.ToInt32(CboOrden.EditValue);
             if (WTQ1List.Count > 0 && Convert.ToInt32(IdTipoOrden) != 2) //Revisar 
             {
@@ -7396,7 +7397,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
             {
                 if (dtgOT.VisibleRowCount == 0) { return; }
                 var otId = Convert.ToInt32(dtgOT.GetCellDisplayText(tblvOT.FocusedRowHandle, "IdOT"));
-                
+
                 GlobalClass.GeneraImpresionOT((int)MenuEnum.OrdenTrabajo, otId);
             }
             catch (Exception ex)
@@ -7433,7 +7434,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
         {
             try
             {
-            
+
                 GlobalClass.GeneraImpresion(gintIdMenu, gintIdOT);
             }
             catch { }
@@ -7463,6 +7464,115 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 return val;
             }
             return val;
+        }
+
+
+        private bool ValidaAlmacenArticulo(DataTable tableRepuesto, DataTable tablaConsumible)
+        {
+            bool val = true;
+
+            try
+            {
+
+                IdTipoOrden = Convert.ToInt32(CboOrden.EditValue);
+                if (Convert.ToInt32(IdTipoOrden) == 2) //Revisar 
+                {
+                    return true;
+                }
+                    string almacenEntrada = GetAmacenEntrada();
+                string almacenSalida = GetAmacenSalida();
+
+                RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
+                InterfazMTTO.iSBO_BE.BEOITWList listaOITW = new InterfazMTTO.iSBO_BE.BEOITWList();
+
+                if (almacenEntrada == "" || almacenSalida == "")
+                {
+                    GlobalClass.ip.Mensaje("No se encontro un almacén de entrada y/o salida", 2);
+                    return false;
+                }
+
+                if(tablaConsumible.Rows.Count>0) tableRepuesto.Merge(tablaConsumible);
+
+                //Repuestos
+                for (int i = 0; i < tblRepuesto.Rows.Count; i++)
+                {
+                    string articuloId = tblRepuesto.Rows[i]["IdArticulo"].ToString();
+
+                    listaOITW = InterfazMTTO.iSBO_BL.Articulo_BL.ObtenerAlmacenEntradaSalidaArticulo(articuloId, almacenEntrada, almacenSalida, ref RPTA);
+                    if (RPTA.ResultadoRetorno != 0)
+                    {
+                        val = false;
+                        GlobalClass.ip.Mensaje(RPTA.DescripcionErrorUsuario, 2);
+                        break;
+                    }
+
+                    if (listaOITW.Count == 1)
+                    {
+
+                        if (listaOITW[0].WhsCode == almacenEntrada)
+                        {
+                            //GlobalClass.ip.Mensaje(Utilitarios.Utilitarios.parser.GetSetting(gstrEtiquetaOT, "GRAB_CONC"), 2);
+                            GlobalClass.ip.Mensaje("Articulo " + listaOITW[0].WhsCode + " no tiene almacen de salida", 2);
+                            val = false;
+                            break;
+                        }
+                        else
+                        {
+                            GlobalClass.ip.Mensaje("Articulo " + listaOITW[0].WhsCode + " no tiene almacen de entrada", 2);
+                            val = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                val = false;
+                return val;
+            }
+            return val;
+        }
+
+        private string GetAmacenEntrada()
+        {
+            try
+            {
+                objE_TablaMaestra.IdTabla = 42;
+                DataTable tblAlmacen = B_TablaMaestra.TablaMaestra_Combo(objE_TablaMaestra);
+
+                if (tblAlmacen.Rows.Count > 0)
+                    return tblAlmacen.Rows[0]["Valor"].ToString();
+                else
+                    return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                return "";
+            }
+        }
+
+        private string GetAmacenSalida()
+        {
+            try
+            {
+                objE_TablaMaestra.IdTabla = 42;
+                DataTable tblAlmacen = B_TablaMaestra.TablaMaestra_Combo(objE_TablaMaestra);
+
+                if (tblAlmacen.Rows.Count > 0)
+                    return tblAlmacen.Rows[1]["Valor"].ToString();//General
+                else
+                    return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                Error.EscribirError(ex.Data.ToString(), ex.Message, ex.Source, ex.StackTrace, ex.TargetSite.ToString(), "", "", "");
+                GlobalClass.ip.Mensaje(ex.Message, 3);
+                return string.Empty;
+            }
         }
     }
 }

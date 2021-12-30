@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices;
 using Entities;
-using Data;
 
 namespace Data
 {
