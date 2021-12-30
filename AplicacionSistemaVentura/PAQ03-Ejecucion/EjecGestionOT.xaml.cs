@@ -6997,7 +6997,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 cant++;
 
             }
-
+                
             IdTipoOrden = Convert.ToInt32(CboOrden.EditValue);
             if (WTQ1List.Count > 0 && Convert.ToInt32(IdTipoOrden) != 2) //Revisar 
             {
@@ -7448,7 +7448,7 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 //Obtener Tipo de Cambio
                 RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
                 InterfazMTTO.iSBO_BE.BEORTT tipoCambio = null;
-                tipoCambio = InterfazMTTO.iSBO_BL.TipoCambio_BL.ObtenerTipoCambioPorFecha(DateTime.Now.AddDays(+1), ref RPTA);
+                tipoCambio = InterfazMTTO.iSBO_BL.TipoCambio_BL.ObtenerTipoCambioPorFecha(DateTime.Now, ref RPTA);
                 if (RPTA.ResultadoRetorno != 0)
                 {
                     GlobalClass.ip.Mensaje(RPTA.DescripcionErrorUsuario, 2);
