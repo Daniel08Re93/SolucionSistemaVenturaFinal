@@ -568,6 +568,10 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                 tblOTArticuloSol.Columns.Add("NroLinSalMercancia", Type.GetType("System.Int32"));
                 tblOTArticuloSol.Columns.Add("NroSolDevolucion", Type.GetType("System.Int32"));
                 tblOTArticuloSol.Columns.Add("NroLinSolDevolucionr", Type.GetType("System.Int32"));
+                #region COSTO_ARTICULO_SALIDA
+                tblOTArticuloSol.Columns.Add("CostoArticulo", Type.GetType("System.Double"));
+                #endregion
+
 
                 tblNroSeriesAsignadas = new DataTable();
                 tblNroSeriesAsignadas.Columns.Add("IdOT", Type.GetType("System.Int32"));
@@ -3572,7 +3576,21 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                     row["CantEnv"] = 0;
                     row["CantUti"] = 0;
                     row["Observacion"] = 0;
-                    row["CostoArticulo"] = 0;
+                    #region COSTO_ARTICULO_CREACION_OT
+                    //row["CostoArticulo"] = 0;
+                    int TipoProceso = 1;
+                    int DocEntry = 0;
+                    RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
+                    OITW_List = InterfazMTTO.iSBO_BL.Articulo_BL.ObtenerCostoArticulo(row["IdArticulo"].ToString(), TipoProceso, DocEntry, ref RPTA);
+                    if (RPTA.ResultadoRetorno == 0)
+                    {
+                        row["CostoArticulo"] = Convert.ToDouble(OITW_List[0].CostoArticulo);
+                    }
+                    else
+                    {
+                        row["CostoArticulo"] = 0;
+                    }
+                    #endregion
                     row["FlagAutomatico"] = true;
                     row["FlagActivo"] = true;
                     row["Nuevo"] = true;
@@ -5563,8 +5581,9 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
                         if (IGE1List.Count > 0)
                         {
+                            string DocEntry = "";
                             InterfazMTTO.iSBO_BE.BEIGE1List IGE1List2 = new InterfazMTTO.iSBO_BE.BEIGE1List();
-                            IGE1List2 = InterfazMTTO.iSBO_BL.SalidaMercancia_BL.RegistraSalidaMercancia(OIGE, IGE1List, ref RPTA);
+                            IGE1List2 = InterfazMTTO.iSBO_BL.SalidaMercancia_BL.RegistraSalidaMercancia(OIGE, IGE1List, ref RPTA, ref DocEntry);
 
                             if (RPTA.ResultadoRetorno != 0)
                             {
@@ -5574,6 +5593,12 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                             else
                             {
                                 //Actualizar datos OTArticulo Mercaderia
+                                #region COSTO_ARTICULO_SALIDA
+                                int TipoProceso = 2;
+                                int iDocEntry = 0;
+                                iDocEntry = Convert.ToInt32(DocEntry);
+                                #endregion
+
                                 tblOTArticuloSol.Rows.Clear();
                                 for (int j = 0; j < IGE1List2.Count; j++)
                                 {
@@ -5581,6 +5606,20 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
                                     dr["IdOTArticulo"] = IGE1List2[j].NroLineaOrdenTrabajo;
                                     dr["NroSalMercancia"] = IGE1List2[j].NroSalidaMercancia;
                                     dr["NroLinSalMercancia"] = IGE1List2[j].NroLineaSalidaMercancia;
+
+                                    #region COSTO_ARTICULO_SALIDA
+                                    RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
+                                    OITW_List = InterfazMTTO.iSBO_BL.Articulo_BL.ObtenerCostoArticulo(IGE1List2[j].CodigoArticulo.ToString(), TipoProceso, iDocEntry, ref RPTA);
+                                    if (RPTA.ResultadoRetorno == 0)
+                                    {
+
+                                        dr["CostoArticulo"] = Convert.ToDouble(OITW_List[0].CostoArticulo);
+                                    }
+                                    else
+                                    {
+                                        dr["CostoArticulo"] = 0;
+                                    }
+                                    #endregion
                                     tblOTArticuloSol.Rows.Add(dr);
                                 }
                                 int z = objB_OT.OTArticulo_Update(2, tblOTArticuloSol);
@@ -5987,16 +6026,19 @@ namespace AplicacionSistemaVentura.PAQ03_Ejecucion
 
                 if (WTQ1List.Count == 0)
                 {
+                    #region COSTO_ARTICULO_CREAR_OT
                     //Obtener Costo Articulo SAP
-                    RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
-                    OITW_List = InterfazMTTO.iSBO_BL.Articulo_BL.ObtenerCostoArticulo(Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["IdArticulo"]), ref RPTA);
-                    if (RPTA.ResultadoRetorno != 0)
-                    {
-                        GlobalClass.ip.Mensaje(RPTA.DescripcionErrorUsuario, 2);
-                        //return;
-                    }
+                    //RPTA = new InterfazMTTO.iSBO_BE.BERPTA();
+                    //OITW_List = InterfazMTTO.iSBO_BL.Articulo_BL.ObtenerCostoArticulo(Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["IdArticulo"]), ref RPTA);
+                    //if (RPTA.ResultadoRetorno != 0)
+                    //{
+                    //    GlobalClass.ip.Mensaje(RPTA.DescripcionErrorUsuario, 2);
+                    //    //return;
+                    //}
 
-                    row["CostoArticulo"] = Convert.ToDouble(OITW_List[0].CostoArticulo);
+                    //row["CostoArticulo"] = Convert.ToDouble(OITW_List[0].CostoArticulo);
+                    row["CostoArticulo"] = Convert.ToString(tblOTCompDetDatos.Tables[1].Rows[i]["CostoArticulo"]);
+                    #endregion
                 }
                 else
                 {

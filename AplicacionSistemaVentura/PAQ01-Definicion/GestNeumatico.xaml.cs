@@ -198,6 +198,7 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
 
                     if (chkNoStock.IsChecked == false)
                     {
+                        string sDocEntry = "";
                         InterfazMTTO.iSBO_BE.BEOIGE objOIGE = new InterfazMTTO.iSBO_BE.BEOIGE();
                         objOIGE.FechaSolicitud = DateTime.Now;
                         objOIGE.NroOrdenTrabajo = "";
@@ -213,7 +214,7 @@ namespace AplicacionSistemaVentura.PAQ01_Definicion
                         objBEIGE1.CuentaContable = gstrCuenCont;
                         objBEIGE1.TipoOperacion = gstrTipoOperacion;
                         LBEIGE1.Add(objBEIGE1);
-                        LBEIGE2 = InterfazMTTO.iSBO_BL.SalidaMercancia_BL.RegistraSalidaMercancia(objOIGE, LBEIGE1, ref RPTA);
+                        LBEIGE2 = InterfazMTTO.iSBO_BL.SalidaMercancia_BL.RegistraSalidaMercancia(objOIGE, LBEIGE1, ref RPTA, ref sDocEntry);
 
                         if (RPTA.ResultadoRetorno == 0)
                         {

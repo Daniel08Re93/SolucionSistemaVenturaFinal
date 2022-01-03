@@ -34,5 +34,12 @@ namespace Business
         {
             return D_Programacion.Bitacora_GetStock(LineNum);
         }
+
+        #region REQUERIMIENTO_07
+        public DataTable Bitacora_List_All(int IdUC, int IdPM)
+        {
+            return D_Programacion.Bitacora_List_All(IdUC, IdPM);
+        }
+        #endregion
     }
 }

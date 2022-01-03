@@ -128,5 +128,24 @@ namespace Data
             }
             return rpta;
         }
+
+        #region REQUERIMIENTO_07
+        public static DataTable Bitacora_List_All(int IdUC, int IdPM)
+        {
+            DataTable tbl = new DataTable();
+            using (SqlConnection cx = Conexion.ObtenerConexion())
+            {
+                cx.Open();
+                SqlCommand cmd = new SqlCommand("Bitacora_ListByFilters_All", cx);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@IdUC", SqlDbType.Int).Value = IdUC;
+                cmd.Parameters.Add("@IdPM", SqlDbType.Int).Value = IdPM;
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(tbl);
+                cx.Close();
+            }
+            return tbl;
+        }
+        #endregion
     }
 }
