@@ -415,6 +415,8 @@ namespace AplicacionSistemaVentura
                 paramFiels1.Add(param1);
                 param1.CurrentValues.Add(discreteValue1);
                 paramFiels1.Add(param1);
+                param1.CurrentValues.Add(discreteValue1);
+                paramFiels1.Add(param1);
 
                 cryRpt.Load(Ruta);
                 cryRpt.SetDatabaseLogon(builder.UserID, builder.Password, builder.DataSource, builder.InitialCatalog);
